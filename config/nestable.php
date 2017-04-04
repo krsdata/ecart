@@ -17,6 +17,6 @@ return [
     'dropdown' => [
         'prefix' => '',
         'label' => 'name',
-        'value' => 'id'
+        'value' => 'id' 
     ]
 ];

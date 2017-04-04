@@ -17,7 +17,7 @@ class Category extends Eloquent {
      *
      * @var string
      */
-    protected $table = 'category';
+    protected $table = 'categories';
     /**
      * The attributes that are mass assignable.
      *

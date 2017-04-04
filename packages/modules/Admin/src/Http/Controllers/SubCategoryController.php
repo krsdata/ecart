@@ -9,6 +9,7 @@ use Modules\Admin\Http\Requests\SubCategoryRequest;
 use Modules\Admin\Models\User;
 use Modules\Admin\Models\Category;
 use Modules\Admin\Models\SubCategory;
+//use App\Category;
 use Input;
 use Validator;
 use Auth;
@@ -82,25 +83,30 @@ class SubCategoryController extends Controller {
     {
         $page_title     = 'Category';
         $page_action    = 'Create Sub-category';
-        $sub_category_name  = Category::groupBy('category_name')->lists('category_name','category_name');
+         
 
-        $category_list = $sub_category_name->toArray(); 
+        $html =  Category::renderAsHtml(); 
 
-        if($sub_category_name->count()==0){  
-           return Redirect::to(route('sub-category.create'));
-        }
+        $categories =  Category::attr(['name' => 'category_id','class'=>'form-control form-cascade-control input-small'])
+                        ->selected([1])
+                        ->renderAsDropdown();
+       
 
-        return view('packages::sub_category.create', compact( 'category_list','category','sub_category_name', 'page_title', 'page_action'));
+        return view('packages::sub_category.create', compact( 'categories','html','category_list','category','sub_category_name', 'page_title', 'page_action'));
     }
 
     /*
      * Save Group method
      * */
 
-    public function store(SubCategoryRequest $request, SubCategory $category) {
-      
-        $category->fill(Input::all());   
-        $category->save(); 
+    public function store(SubCategoryRequest $request, SubCategory $category) 
+    {
+        $parent_id = $request->get('category_id');
+        $cat = new Category;
+        $cat->name =  $request->get('sub_category_name');
+        $cat->slug = strtolower(str_slug($request->get('sub_category_name')));
+        $cat->parent_id = $parent_id; 
+        $cat->save();  
        
         return Redirect::to(route('category'))
                             ->with('flash_alert_notice', 'New category was successfully created !');

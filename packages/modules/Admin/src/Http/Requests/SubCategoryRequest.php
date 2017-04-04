@@ -20,8 +20,7 @@ class SubCategoryRequest  extends Request {
                     }
                 case 'POST': {
                         return [
-                            'category_name'   => "required" ,  
-                            'sub_category_name' => 'required|unique:categories,sub_category_name', 
+                             'sub_category_name' => 'required|unique:categories,name', 
                         ];
                     }
                 case 'PUT':
@@ -29,8 +28,7 @@ class SubCategoryRequest  extends Request {
                     if ( $category = $this->category ) {
 
                         return [
-                            'category_name'   => "required" ,  
-                            'sub_category_name' => 'required', 
+                             'sub_category_name' => 'required', 
                         ];
                     }
                 }

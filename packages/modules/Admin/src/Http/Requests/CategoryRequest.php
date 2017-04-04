@@ -20,7 +20,7 @@ class CategoryRequest  extends Request {
                     }
                 case 'POST': {
                         return [
-                            'category_name' => 'required|unique:categories,category_name', 
+                            'category_name' => 'required|unique:categories,name', 
                         ];
                     }
                 case 'PUT':

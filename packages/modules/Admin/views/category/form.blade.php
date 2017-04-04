@@ -14,7 +14,7 @@
         <label class="col-lg-4 col-md-4 control-label"></label>
         <div class="col-lg-8 col-md-8">
 
-            {!! Form::submit(' Save ', ['class'=>'btn  btn-primary text-white','id'=>'saveBtn']) !!}
+            {!! Form::submit(' Add Category ', ['class'=>'btn  btn-primary text-white','id'=>'saveBtn']) !!}
 
             <a href="{{route('category')}}">
             {!! Form::button('Back', ['class'=>'btn btn-warning text-white']) !!} </a>

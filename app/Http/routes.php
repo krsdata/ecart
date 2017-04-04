@@ -13,6 +13,8 @@
 
 Route::match(['post','get'],'cat','HomeController@index');
 
+
+
 Route::get('product-details',[
           'as' => 'productDetails',
           'uses'  => 'HomeController@productDetail'
@@ -33,7 +35,7 @@ Route::get('home',[
           'uses'  => 'HomeController@home'
         ]);
 Route::get('category',[
-          'as' => 'category',
+          'as' => 'category-front',
           'uses'  => 'HomeController@category'
         ]); 
  Route::get('order',[

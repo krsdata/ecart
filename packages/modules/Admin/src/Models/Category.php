@@ -4,9 +4,14 @@ namespace Modules\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent; 
 
+use Nestable\NestableTrait;
+
 class Category extends Eloquent {
 
-   
+    use NestableTrait;
+
+     protected $parent = 'parent_id';
+
     /**
      * The database table used by the model.
      *
@@ -38,6 +43,13 @@ class Category extends Eloquent {
      *
      * @var array
      */
+
+     public function subcategory()
+    {
+       
+        return $this->belongsTo('Modules\Admin\Models\Category','parent_id','id');
+    }
+  
     
   
 }

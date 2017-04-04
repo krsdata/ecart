@@ -4,7 +4,9 @@
     <div class="form-group{{ $errors->first('category_name', ' has-error') }}">
         <label class="col-lg-4 col-md-4 control-label"> Category Name <span class="error">*</span></label>
         <div class="col-lg-8 col-md-8"> 
-            {!!   Form::select('category_name', $category_list, null, ['class' => 'form-control form-cascade-control input-small'])  !!}
+            
+                {!! $categories !!}
+
             <span class="label label-danger">{{ $errors->first('category_name', ':message') }}</span>
         </div>
     </div> 

@@ -40,6 +40,7 @@
                                     @endif
                                       
                                    <div class="box-body table-responsive no-padding" >
+                                  
                                         <table class="table table-hover table-condensed">
                                             <thead><tr>
                                                     <th>Sno</th> 
@@ -64,17 +65,18 @@
                                               <tbody>    
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td>{{ $result->category_name }}  
+                                                    <td>{{ $result->name }}  
                                                         <a href="{{ route('category.edit',$result->id)}}">
                                                             <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> 
                                                         </a></td>
                                                     <td>
-                                                        @if($result->sub_category_name=='')
-                                                       <a href="{{ route('sub-category.edit',$result->id)}}"> <b>Add sub category<b></a>
+                                                        @if(isset($result->subcategory->id))
+                                                         {{ $result->subcategory->name }}
+                                                       <a href="{{ route('sub-category.edit',$result->subcategory->id)}}"> <b>Edit sub category<b></a>
                                                         @else
-                                                        {{ $result->sub_category_name }}
-                                                          <a href="{{ route('sub-category.edit',$result->id)}}">
-                                                            <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> 
+                                                        
+                                                          <a href="{{ route('sub-category.create')}}">
+                                                            <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> Add
                                                         </a>
                                                         @endif
                                                     </td>
