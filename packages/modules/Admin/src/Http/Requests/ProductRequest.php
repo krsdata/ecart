@@ -23,7 +23,8 @@ class ProductRequest  extends Request {
                             'product_title'     => "required|unique:products,product_title" ,  
                             'product_category'  => 'required', 
                             'description'       => 'required',
-                            'price'             =>  'required|numeric|min:1',
+                            'price'             =>  'required|numeric|min:0',
+                            'discount'             =>  'required|numeric|min:0',
                             'image'             => 'required|mimes:jpeg,bmp,png,gif'
                         ];
                     }
@@ -33,8 +34,10 @@ class ProductRequest  extends Request {
 
                         return [
                             'product_title'     => "required" ,  
-                            'product_category'  => 'required',
+                            'product_category'  => 'required', 
                             'description'       => 'required',
+                            'price'             =>  'required|numeric|min:0',
+                            'discount'             =>  'required|numeric|min:0',
                             'image'             => 'mimes:jpeg,bmp,png,gif'
                         ];
                     }

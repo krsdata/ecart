@@ -106,10 +106,12 @@ class SubCategoryController extends Controller {
         $cat->name =  $request->get('sub_category_name');
         $cat->slug = strtolower(str_slug($request->get('sub_category_name')));
         $cat->parent_id = $parent_id; 
+        $cat->category_name         =  $request->get('sub_category_name');
+        $cat->sub_category_name     =  $request->get('sub_category_name');
         $cat->save();  
        
         return Redirect::to(route('category'))
-                            ->with('flash_alert_notice', 'New category was successfully created !');
+                            ->with('flash_alert_notice', 'New Sub category was successfully created !');
         }
 
     /*
@@ -122,31 +124,43 @@ class SubCategoryController extends Controller {
 
         $page_title = 'Category';
         $page_action = 'Edit Sub-category';  
-        $sub_category_name  = Category::groupBy('category_name')->lists('category_name','category_name');
+        
 
-        $category_list = $sub_category_name->toArray();
+        $html =  Category::renderAsHtml(); 
 
-        return view('packages::sub_category.edit', compact('category_list', 'sub_category_name','category', 'page_title', 'page_action'));
+        $categories =  Category::attr(['name' => 'category_id','class'=>'form-control form-cascade-control input-small'])
+                        ->selected(['id'=>$category->parent_id])
+                        ->renderAsDropdown();
+
+        return view('packages::sub_category.edit', compact( 'categories','category','page_title', 'page_action'));
     }
 
     public function update(Request $request, SubCategory $category) {
         
-        $category->fill(Input::all()); 
-        $category->save();
+        $parent_id = $request->get('category_id');
+        $cat = Category::find($category->id);
+        $cat->name =  $request->get('sub_category_name');
+        $cat->slug = strtolower(str_slug($request->get('sub_category_name')));
+        $cat->parent_id = $parent_id; 
+        $cat->category_name         =  $request->get('sub_category_name');
+        $cat->sub_category_name     =  $request->get('sub_category_name');
+        $cat->save(); 
+
+
         return Redirect::to(route('category'))
-                        ->with('flash_alert_notice', 'Category was  successfully updated !');
+                        ->with('flash_alert_notice', 'Sub Category was  successfully updated !');
     }
     /*
      *Delete User
      * @param ID
      * 
      */
-    public function destroy(Category $category) {
+    public function destroy(SubCategory $category) {
         
         Category::where('id',$category->id)->delete();
 
         return Redirect::to(route('category'))
-                        ->with('flash_alert_notice', 'Category was successfully deleted!');
+                        ->with('flash_alert_notice', 'Sub Category was successfully deleted!');
     }
 
     public function show(Category $category) {

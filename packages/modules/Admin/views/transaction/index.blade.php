@@ -19,15 +19,7 @@
                             <div class="row">
                                 <div class="box">
                                     <div class="box-header">
-                                        
                                          
-                                        <div class="col-md-2 pull-right">
-                                            <div style="width: 150px;" class="input-group"> 
-                                                <a href="{{ route('product.create')}}">
-                                                    <button class="btn  btn-primary"><i class="fa fa-user-plus"></i> Create Product</button> 
-                                                </a>
-                                            </div>
-                                        </div> 
                                     </div><!-- /.box-header -->
 
                                     
@@ -43,15 +35,16 @@
                                         <table class="table table-hover table-condensed">
                                             <thead><tr>
                                                     <th>Sno</th> 
+                                                    <th>Buyer Name</th>
+                                                    <th>Buyer Email</th>
                                                     <th>Product Title</th>
-                                                    <th>Category</th>
-                                                    <th>Sub Category </th>
-                                                    <th>Photo </th> 
-                                                    <th>Price </th> 
-                                                    <th>Created Date</th> 
-                                                    <th>Action</th>
+                                                    <th>Price</th> 
+                                                    <th>Payment Mode</th>
+                                                     <th>Order Date</th>
+                                                     <th>Status</th>
+                                                   <!--  <th>Action</th> -->
                                                 </tr>
-                                                @if(count($products )==0)
+                                                @if(count($transaction)==0)
                                                     <tr>
                                                       <td colspan="7">
                                                         <div class="alert alert-danger alert-dismissable">
@@ -62,44 +55,46 @@
                                                       </td>
                                                     </tr>
                                                   @endif
-                                                @foreach ($products  as $key => $result)  
+                                                @foreach ($transaction as $key => $result)  
                                              <thead>
                                               <tbody>    
                                                 <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td>{!! ucfirst($result->product_title)     !!}
-
-                                                    </td>
-                                                    <td>
-                                                    {{ ($helper->getCategoryName($result->category->parent_id)==null)?$result->category->name:$helper->getCategoryName($result->category->parent_id) }}
-
-                                                    </td>
-                                                    <td>    {{ $result->category->name }}</td>
-                                                     <td> 
-                                                      <!--   {!!  substr(html_entity_decode($result->description, ENT_QUOTES, 'UTF-8'),0,50)  !!}.. -->
-                                                        <img src="{!! Url::to('storage/uploads/products/'.$result->photo) !!}" width="100px">
-                                                     </td>
-                                                    <td>    {{ number_format($result->price, 2, '.', ',') }}</td>
+                                                    <td>{{ ++$key }}</td> 
+                                                    <td>{{ $result->user->first_name.' '.$result->user->last_name }}</td>
+                                                    <td>{{ $result->user->email }} </td>
+                                                    <td>{{ $result->product->product_title }} </td>
+                                                     <td>{{ $result->total_price }} </td>
+                                                       <td>{{ $result->payment_mode }} </td> 
+                                                   
                                                     <td>
                                                         {!! Carbon\Carbon::parse($result->created_at)->format('d-M-Y'); !!}
                                                     </td>
-                                                    
-                                                    <td> 
-                                                        <a href="{{ route('product.edit',$result->id)}}">
-                                                            <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> 
-                                                        </a>
+                                                    <td>
+                                                        <span class="label label-{{ ($result->status==1)?'success':'warning'}} status" id="{{$result->id}}"  data="{{$result->status}}"  onclick="changeStatus({{$result->id}},'transaction')" >
+                                                             @if($result->status==1)
+                                                             Pending
+                                                             @elseif($result->status==2)
+                                                             In Progress
+                                                             @elseif($result->status==3)
+                                                             Success
+                                                             @elseif($result->status==4)
+                                                             Cancel
+                                                             @endif
+                                                        </span>
+                                                    </td>
+                                                 <!--    <td>  
 
-                                                        {!! Form::open(array('class' => 'form-inline pull-left deletion-form', 'method' => 'DELETE',  'id'=>'deleteForm_'.$result->id, 'route' => array('product.destroy', $result->id))) !!}
+                                                        {!! Form::open(array('class' => 'form-inline pull-left deletion-form', 'method' => 'DELETE',  'id'=>'deleteForm_'.$result->id, 'route' => array('transaction.destroy', $result->id))) !!}
                                                         <button class='delbtn btn btn-danger btn-xs' type="submit" name="remove_levels" value="delete" id="{{$result->id}}"><i class="fa fa-fw fa-trash" title="Delete"></i></button>
                                                         
                                                          {!! Form::close() !!}
 
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 @endforeach 
                                             </tbody></table>
                                     </div><!-- /.box-body --> 
-                                    <div class="center" align="center">  {!! $products->render() !!}</div>
+                                    <div class="center" align="center">  {!! $transaction->appends(['search' => isset($_GET['search'])?$_GET['search']:''])->render() !!}</div>
                                 </div>
                             </div>
                         </div>

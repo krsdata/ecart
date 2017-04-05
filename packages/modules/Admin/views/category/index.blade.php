@@ -20,7 +20,8 @@
                                 <div class="box">
                                     <div class="box-header">
                                         
-                                        
+                                           <h3> Category list</h3>
+                                <hr>
                                         <div class="col-md-2 pull-right">
                                             <div style="width: 150px;" class="input-group"> 
                                                 <a href="{{ route('category.create')}}">
@@ -39,12 +40,77 @@
                                          </div>
                                     @endif
                                       
-                                   <div class="box-body table-responsive no-padding" >
+                                <div class="box-body table-responsive no-padding" >
                                   
                                         <table class="table table-hover table-condensed">
                                             <thead><tr>
                                                     <th>Sno</th> 
-                                                    <th>Category Name</th>
+                                                    <th>Category Name</th> 
+                                                    <th>Created Date</th> 
+                                                    <th>Action</th>
+                                                </tr>
+                                                @if(count($categories )==0)
+                                                    <tr>
+                                                      <td colspan="7">
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                                          <i class="icon fa fa-check"></i>  
+                                                          {{ 'Record not found. Try again !' }}
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                  @endif
+                                                   <?php $i=0; ?>
+                                                @foreach ($categories  as $key => $result)  
+                                                  @if($result->parent_id==0) 
+                                             <thead>
+                                              <tbody>    
+                                                <tr>
+                                                    <td>{{ ++$i }}</td>
+                                                    <td>{{ $result->name }}  
+                                                        <a href="{{ route('category.edit',$result->id)}}">
+                                                            <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> 
+                                                        </a></td> 
+                                                    
+                                                    <td>
+                                                        {!! Carbon\Carbon::parse($result->created_at)->format('m-d-Y H:i:s A'); !!}
+                                                    </td>
+                                                    
+                                                    <td> 
+
+                                                        {!! Form::open(array('class' => 'form-inline pull-left deletion-form', 'method' => 'DELETE',  'id'=>'deleteForm_'.$result->id, 'route' => array('category.destroy', $result->id))) !!}
+                                                        <button class='delbtn btn btn-danger btn-xs' type="submit" name="remove_levels" value="delete" id="{{$result->id}}"><i class="fa fa-fw fa-trash" title="Delete"></i></button>
+                                                        
+                                                         {!! Form::close() !!}
+
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                                <thead>
+                                                @endif
+                                                @endforeach 
+                                            </table>
+                                </div> 
+                                  <h3> Sub Category list</h3>
+                                <hr>
+                                  <div class="box-header">
+                                        
+                                        
+                                        <div class="col-md-2 pull-right">
+                                            <div style="width: 150px;" class="input-group"> 
+                                                <a href="{{ route('sub-category.create')}}">
+                                                    <button class="btn  btn-primary"><i class="fa fa-user-plus"></i> Add Sub Category</button> 
+                                                </a>
+                                            </div>
+                                        </div> 
+                                    </div><!-- /.box-header -->
+                              
+
+                                 <div class="box-body table-responsive no-padding" >
+                                  
+                                        <table class="table table-hover table-condensed">
+                                            <thead><tr>
+                                                    <th>Sno</th>  
                                                     <th>Sub Category Name</th>
                                                     <th>Created Date</th> 
                                                     <th>Action</th>
@@ -60,43 +126,42 @@
                                                       </td>
                                                     </tr>
                                                   @endif
-                                                @foreach ($categories  as $key => $result)  
-                                             <thead>
-                                              <tbody>    
-                                                <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td>{{ $result->name }}  
-                                                        <a href="{{ route('category.edit',$result->id)}}">
-                                                            <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> 
-                                                        </a></td>
-                                                    <td>
-                                                        @if(isset($result->subcategory->id))
-                                                         {{ $result->subcategory->name }}
-                                                       <a href="{{ route('sub-category.edit',$result->subcategory->id)}}"> <b>Edit sub category<b></a>
-                                                        @else
-                                                        
-                                                          <a href="{{ route('sub-category.create')}}">
-                                                            <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> Add
-                                                        </a>
-                                                        @endif
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        {!! Carbon\Carbon::parse($result->created_at)->format('m-d-Y H:i:s A'); !!}
-                                                    </td>
-                                                    
-                                                    <td> 
+                                                  <?php $i=0; ?>
+                                                @foreach ($categories  as $key2 => $result) 
+                                                @if($result->parent_id!=0) 
+                                                     <thead>
+                                                      <tbody>    
+                                                        <tr>
+                                                            <td>{{ ++$i }}</td>
+                                                            <td>{{ $result->name }}  
+                                                                <a href="{{ route('sub-category.edit',$result->id)}}">
+                                                                    <i class="fa fa-fw fa-pencil-square-o" title="edit"></i> 
+                                                                </a></td>
+                                                            <td>
+                                                               
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                {!! Carbon\Carbon::parse($result->created_at)->format('m-d-Y H:i:s A'); !!}
+                                                            </td>
+                                                            
+                                                            <td> 
 
-                                                        {!! Form::open(array('class' => 'form-inline pull-left deletion-form', 'method' => 'DELETE',  'id'=>'deleteForm_'.$result->id, 'route' => array('category.destroy', $result->id))) !!}
-                                                        <button class='delbtn btn btn-danger btn-xs' type="submit" name="remove_levels" value="delete" id="{{$result->id}}"><i class="fa fa-fw fa-trash" title="Delete"></i></button>
-                                                        
-                                                         {!! Form::close() !!}
+                                                                {!! Form::open(array('class' => 'form-inline pull-left deletion-form', 'method' => 'DELETE',  'id'=>'deleteForm_'.$result->id, 'route' => array('sub-category.destroy', $result->id))) !!}
+                                                                <button class='delbtn btn btn-danger btn-xs' type="submit" name="remove_levels" value="delete" id="{{$result->id}}"><i class="fa fa-fw fa-trash" title="Delete"></i></button>
+                                                                
+                                                                 {!! Form::close() !!}
 
-                                                    </td>
-                                                </tr>
-                                                @endforeach 
-                                            </tbody></table>
-                                    </div><!-- /.box-body --> 
+                                                            </td>
+                                                        </tr>
+                                                          @endif
+                                                        @endforeach 
+                                                  
+                                                    </tbody>
+                                                </table>
+
+                                </div> 
+
                                     <div class="center" align="center">  {!! $categories->appends(['search' => isset($_GET['search'])?$_GET['search']:''])->render() !!}</div>
                                 </div>
                             </div>

@@ -99,6 +99,25 @@
             ]
                 ]
         ); 
+
+        Route::bind('transaction', function($value, $route) {
+            return Modules\Admin\Models\Transaction::find($value);
+        });
+ 
+        Route::resource('admin/transaction', 'Modules\Admin\Http\Controllers\TransactionController', [
+            'names' => [
+                'edit' 		=> 'transaction.edit',
+                'show' 		=> 'transaction.show',
+                'destroy' 	=> 'transaction.destroy',
+                'update' 	=> 'transaction.update',
+                'store' 	=> 'transaction.store',
+                'index' 	=> 'transaction',
+                'create' 	=> 'transaction.create',
+            ]
+                ]
+        ); 
+
+
  
         Route::match(['get','post'],'admin/profile', 'Modules\Admin\Http\Controllers\AdminController@profile'); 
             

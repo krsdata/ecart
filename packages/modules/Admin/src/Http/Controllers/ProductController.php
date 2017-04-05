@@ -25,7 +25,7 @@ use Route;
 use Crypt;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Dispatcher; 
-use App\Helpers\Helper;
+use Modules\Admin\Helpers\Helper as Helper;
 use Response;
 
 /**
@@ -69,8 +69,9 @@ class ProductController extends Controller {
         }
          
         $products = $product->with('category')->orderBy('id','desc')->Paginate($this->record_per_page);
+ 
 
-        return view('packages::product.index', compact('products', 'page_title', 'page_action'));
+        return view('packages::product.index', compact('products', 'page_title', 'page_action','helper'));
    
     }
 
@@ -88,7 +89,11 @@ class ProductController extends Controller {
         foreach ($category as $key => $value) {
              $cat[$value->category_name][$value->id] =  $value->sub_category_name;
         } 
-        return view('packages::product.create', compact( 'cat','category','product','sub_category_name', 'page_title', 'page_action'));
+
+         $categories =  Category::attr(['name' => 'product_category','class'=>'form-control form-cascade-control input-small'])
+                        ->selected([1])
+                        ->renderAsDropdown(); 
+        return view('packages::product.create', compact('categories','cat','category','product','sub_category_name', 'page_title', 'page_action'));
      }
 
     /*
@@ -99,7 +104,7 @@ class ProductController extends Controller {
     {
         if ($request->file('image')) { 
             $photo = $request->file('image');
-            $destinationPath = base_path() . '/public/uploads/products/';
+            $destinationPath = storage_path('uploads/products');
             $photo->move($destinationPath, time().$photo->getClientOriginalName());
             $photo_name = time().$photo->getClientOriginalName();
             $request->merge(['photo'=>$photo_name]);
@@ -108,8 +113,9 @@ class ProductController extends Controller {
             $product->product_category   =   $request->get('product_category');
             $product->description        =   $request->get('description');
             $product->price              =   $request->get('price');
+            $product->discount              =   $request->get('discount');
             $product->photo              =   $photo_name;
-
+ 
             $product->save(); 
            
         } 
@@ -133,7 +139,11 @@ class ProductController extends Controller {
              $cat[$value->category_name][$value->id] =  $value->sub_category_name;
         } 
         
-        return view('packages::product.edit', compact( 'cat','product', 'page_title', 'page_action'));
+        $categories =  Category::attr(['name' => 'product_category','class'=>'form-control form-cascade-control input-small'])
+                        ->selected(['id'=>$product->product_category])
+                        ->renderAsDropdown();
+
+        return view('packages::product.edit', compact( 'categories','product', 'page_title', 'page_action'));
     }
 
     public function update(ProductRequest $request, Product $product) 
@@ -142,7 +152,8 @@ class ProductController extends Controller {
          if ($request->file('image')) { 
 
             $photo = $request->file('image');
-            $destinationPath = base_path() . '/public/uploads/products/';
+            //$destinationPath = base_path() . '/public/uploads/products/';
+            $destinationPath = storage_path('uploads/products');
             $photo->move($destinationPath, time().$photo->getClientOriginalName());
             $photo_name = time().$photo->getClientOriginalName();
             $request->merge(['photo'=>$photo_name]);
@@ -152,6 +163,7 @@ class ProductController extends Controller {
             $product->description        =   $request->get('description');
             $product->photo              =   $photo_name;
             $product->price              =   $request->get('price');
+            $product->discount              =   $request->get('discount');
             $product->save(); 
         }else{
             $product->product_title      =   $request->get('product_title');
@@ -159,6 +171,7 @@ class ProductController extends Controller {
             $product->description        =   $request->get('description');
             $product->photo              =   $request->get('photo');
             $product->price              =   $request->get('price');
+            $product->discount              =   $request->get('discount');
             $product->save(); 
         }
         return Redirect::to(route('product'))

@@ -2,22 +2,20 @@
 
 namespace Modules\Admin\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent; 
+use Illuminate\Database\Eloquent\Model as Eloquent;  
 
-use Nestable\NestableTrait;
+use Illuminate\Foundation\Http\FormRequest;
+use Response;
 
-class Category extends Eloquent {
+class CustomerSupport extends Eloquent {
 
-    use NestableTrait;
-
-     protected $parent = 'parent_id';
-
+   
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'customer_supports';
     /**
      * The attributes that are mass assignable.
      *
@@ -35,7 +33,7 @@ class Category extends Eloquent {
      *
      * @var array
      */
-    protected $fillable = ['category_name'];  // All field of user table here    
+    protected $fillable = ['contact_person','support_type','support_number','support_email']; // All field of user table here    
 
 
     /**
@@ -43,13 +41,7 @@ class Category extends Eloquent {
      *
      * @var array
      */
-
-     public function subcategory()
-    {
-       
-        return $this->belongsTo('Modules\Admin\Models\Category','id','parent_id');
-    }
-  
     
+ 
   
 }

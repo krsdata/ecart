@@ -81,43 +81,14 @@ class CategoryController extends Controller {
                         
                     })->Paginate($this->record_per_page);
         } else {
-            $categories = Category::with('subcategory')->orderBy('id','desc')->Paginate($this->record_per_page);
+            $categories = Category::with('subcategory')->Paginate($this->record_per_page);
         }
-
-
-        foreach ($categories as $key => $value) {
-            
-            if($value->parent_id==0){
-                 $cat[$value->id] = ['cat'=>$value->name, 'cat_id' => $value->id];   
-            }
-
-            if(isset($value->subcategory->id)){
-                $arr[$value->subcategory->id][] = ['subcategory'=>$value->name, 'sub_cat_id' => $value->id];
-            }
-           
-        }
-
-       
+ 
+ 
 
 
 
-       $html =   Category::nested()->get();   
-
-
-       foreach ($html as $key => $value) {
-           $arr['cat'] = $value['name'];
-           $arr['cat_id'] = $value['id'];
-            foreach ($value['child'] as $key2 => $value2) {
-                  $arr['subcategory'][] = [
-                                                'id'=>$value2['id'],
-                                                 'name' => $value2['name'],
-
-                                                ];
-            }
-            $data[] = [ 'category'=>$arr['cat'], 'cat_id' => $value['id'] ,'sub'=>$arr['subcategory']];
-            $arr['subcategory'] = [];
-       } 
-        return view('packages::category.index', compact('category','data', 'page_title', 'page_action','html'));
+        return view('packages::category.index', compact('categories','data', 'page_title', 'page_action','html'));
     }
 
     /*
@@ -158,8 +129,8 @@ class CategoryController extends Controller {
         $cat->name =  $request->get('category_name');
         $cat->slug = strtolower(str_slug($request->get('category_name')));
         $cat->parent_id = $parent_id;
-        $category->category_name         =  $request->get('category_name');
-        $category->sub_category_name     =  $request->get('category_name');
+        $cat->category_name         =  $request->get('category_name');
+        $cat->sub_category_name     =  $request->get('category_name');
         $cat->save();   
 
         return Redirect::to(route('category'))
@@ -176,15 +147,24 @@ class CategoryController extends Controller {
 
         $page_title = 'Category';
         $page_action = 'Edit category'; 
-         $sub_category_name  = Category::all();
-        
-        return view('packages::category.edit', compact( 'sub_category_name','category', 'page_title', 'page_action'));
+
+        return view('packages::category.edit', compact( 'category', 'page_title', 'page_action'));
     }
 
     public function update(Request $request, Category $category) {
-        
-        $category->fill(Input::all()); 
-        $category->save();
+       
+        $name = $request->get('category_name');
+        $slug = str_slug($request->get('sub_cat'));
+        $parent_id = 0;
+
+        $cat = Category::find($category->id);
+        $cat->name =  $request->get('category_name');
+        $cat->slug = strtolower(str_slug($request->get('category_name')));
+        $cat->parent_id = $parent_id;
+        $cat->category_name         =  $request->get('category_name');
+        $cat->sub_category_name     =  $request->get('category_name');
+        $cat->save();   
+
         return Redirect::to(route('category'))
                         ->with('flash_alert_notice', 'Category was  successfully updated !');
     }

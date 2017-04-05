@@ -59,6 +59,18 @@
         </ul>
       </li>  
         
+      <li class="treeview {{ (isset($page_action) && $page_title=='Transaction')?"active":'' }} ">
+        <a href="#">
+          <i class="fa fa-user"></i>
+          <span>Manage Transactions</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a> 
+        <ul class="treeview-menu">
+          <li class="{{ (isset($page_action) && $page_action=='View Transaction')?"active":'' }}"><a href="{{ route('transaction')}}"><i class="fa  fa-list"></i> Transactions</a></li>
+        </ul>
+      </li>  
+
+
     </ul>
   </section>
   <!-- /.sidebar -->

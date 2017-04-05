@@ -15,8 +15,9 @@ return [
         'href'  => 'slug'
     ],
     'dropdown' => [
-        'prefix' => '',
+        'prefix' => '&nbsp;&nbsp;&nbsp;-',
         'label' => 'name',
-        'value' => 'id' 
+        'value' => 'id' ,
+        'class'=>'dropdown'
     ]
 ];

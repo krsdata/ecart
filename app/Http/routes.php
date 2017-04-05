@@ -25,6 +25,11 @@ Route::get('product-category',[
           'uses'  => 'HomeController@productCategory'
         ]); 
 
+Route::get('product-category/{category}/{name}/{id}',[
+          'as' => 'productDetails', 
+          'uses'  => 'HomeController@productCategory'
+        ]); 
+
 Route::get('checkout',[
           'as' => 'checkout',
           'uses'  => 'HomeController@checkout'
@@ -43,7 +48,7 @@ Route::get('category',[
           'uses'  => 'HomeController@order'
         ]); 
   Route::get('faq',[
-          'as' => 'order',
+          'as' => 'faq',
           'uses'  => 'HomeController@faq'
         ]); 
   

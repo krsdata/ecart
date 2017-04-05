@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use Auth;
-use App\Category;
+use Auth; 
+use Modules\Admin\Models\User;
+use Modules\Admin\Models\Category;
+use Modules\Admin\Models\Product;
+use Modules\Admin\Models\Transaction;
+use View;
+use Html;
 
 class HomeController extends Controller
 {
@@ -14,9 +19,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-       // $this->middleware('admin');
+    public function __construct(Request $request) {
+
+     
+        View::share('category_name',$request->segment(2));
     }
 
     /**
@@ -27,6 +33,10 @@ class HomeController extends Controller
     public function index()
     {
        // $categories = Category::nested()->get();
+
+        return view('home'); 
+
+
         $html =  Category::renderAsHtml(); 
 
         $categories =  Category::attr(['name' => 'categories'])
@@ -85,31 +95,44 @@ class HomeController extends Controller
  
         return view('end-user.home', compact('banner_path1', 'banner_path2'));
     }
-
+ /*----------*/
     public function checkout()
     {
         return view('end-user.checkout');
     }
-    public function productCategory()
-    {
-        return view('end-user.category');   
+     /*----------*/
+    public function productCategory( $category=null, $name=null,$id=null)
+    { 
+        
+        $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        return view('end-user.category',compact('categories','products','category'));   
     }
-     public function productDetail()
-    {
-        return view('end-user.product-details');   
+    /*----------*/
+    public function productDetail($category=null,$name=null,$id=null)
+    {   
+        $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        return view('end-user.product-details',compact('categories','products','category')); 
     }
+     /*----------*/
      public function order()
     {
         return view('end-user.order');   
     }
+     /*----------*/
     public function faq()
     {
         return view('end-user.faq');   
     }
+     /*----------*/
      public function trackOrder()
     {
         return view('end-user.track-orders');   
     }
+     /*----------*/
      public function tNc()
     {
         return view('end-user.terms-conditions');   

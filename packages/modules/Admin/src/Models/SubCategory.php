@@ -2,11 +2,15 @@
 
 namespace Modules\Admin\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;  
+use Illuminate\Database\Eloquent\Model as Eloquent; 
+
+use Nestable\NestableTrait; 
 
 class SubCategory extends Eloquent {
 
-   
+     use NestableTrait;
+
+     protected $parent = 'parent_id';
     /**
      * The database table used by the model.
      *
@@ -30,7 +34,7 @@ class SubCategory extends Eloquent {
      *
      * @var array
      */
-    protected $fillable = ['category_name','sub_category_name'];  // All field of user table here    
+   protected $fillable = ['sub_category_name'];  // All field of user table here    
 
 
     /**

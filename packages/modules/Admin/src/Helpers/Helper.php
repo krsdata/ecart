@@ -14,14 +14,14 @@ use Crypt;
 use Hash;
 use Menu;
 use Html;
-use Illuminate\Support\Str;
-use App\User; 
+use Illuminate\Support\Str; 
 use Illuminate\Support\Facades\Lang;
 use App\CorporateProfile;
 use Validator; 
 use App\Position;
 use Modules\Admin\Helpers\Helper as Helper;
 use Modules\Admin\Models\User;
+use Modules\Admin\Models\Category;
  
 
 class Helper {
@@ -113,5 +113,16 @@ class Helper {
             $message->to($email_content['receipent_email'])->subject($email_content['subject']);
             
           });
+    }
+
+    public static function  getCategoryName($id=null)
+    {
+        $cat =  Category::where('id',$id)->first();
+        if($cat!=null){
+
+            return $cat->name; 
+        }else{
+            return null;
+        }
     }
 }

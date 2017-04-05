@@ -42,7 +42,9 @@ class ProductController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function __construct() {
+    public function __construct(Request $request) {
+
+        View::share('category_name', $request->segment(1));
     }
 
     protected $categories;
@@ -120,13 +122,23 @@ class ProductController extends Controller {
 
     public function showProduct(Request $request, Product $product)
     {   
-       $products = $product->all();     
-        return view('welcome',compact('products')); 
+       
+       $products = Product::with('category')->orderBy('id','desc')->get();
+       $product_new = Product::with('category')->orderBy('id','desc')->Paginate(5);
+       //dd($products ); 
+       $categories = Category::nested()->get(); 
+
+
+       $banner_path1   = asset('public/enduser/assets/images/sliders/01.jpg');
+       $banner_path2   = asset('public/enduser/assets/images/sliders/02.jpg');
+ 
+        return view('end-user.home', compact('banner_path1', 'banner_path2','categories','products','product_new')); 
     }
 
     public function getProduct(Request $request, Product $product)
     {
-        $products = $product->all(); 
+        $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
          $cart = Cart::content(); 
     
          return json_encode(array(
