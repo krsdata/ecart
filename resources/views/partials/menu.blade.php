@@ -8,10 +8,9 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="##">My Account</a></li>
-            <li><a href="##">Wishlist</a></li>
-            <li><a href="##">My Cart</a></li>
-            <li><a href="##">Checkout</a></li>
+            <li><a href="##">My Account</a></li>  
+            <li><a href="{{ url('checkout') }}">My Cart</a></li>
+            <li><a href="{{ url('checkout') }}">Checkout</a></li>
             <li><a href="##">Login</a></li>
           </ul>
         </div>
@@ -33,7 +32,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="home"> <img src="{{ asset('public/enduser/assets/images/logo.png')}}" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{{url('/')}}"> <img src="{{ asset('public/enduser/assets/images/logo.png')}}" alt="logo"> </a> </div>
           <!-- /.logo --> 
           <!-- ============================================================= LOGO : END ============================================================= --> </div>
         <!-- /.logo-holder -->
@@ -69,13 +68,13 @@
             <div class="items-cart-inner">
               <div class="top-cart">  </div>
               
-              <div class="total-price-basket"> <span class="lbl">2 items /</span> <span class="total-price"> <span class="sign">RS</span><span class="value">600.00</span> </span> </div>
+              <div class="total-price-basket"> <span class="lbl">{{$total_item}} items /</span> <span class="total-price"> <span class="sign">RS</span><span class="value">{{$sub_total}}</span> </span> </div>
             </div>
             </a>
             <ul class="dropdown-menu">
               <li>
                 <div class="cart-item product-summary">
-                  <div class="row">
+                 <!--  <div class="row">
                     <div class="col-xs-4">
                       <div class="image"> <a href="detail.html"><img src="{{ asset('public/enduser/assets/images/cart.jpg')}}" alt=""></a> </div>
                     </div>
@@ -84,15 +83,15 @@
                       <div class="price">RS600.00</div>
                     </div>
                     <div class="col-xs-1 action"> <a href="##"><i class="fa fa-trash"></i></a> </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.cart-item -->
                 <div class="clearfix"></div>
                 <hr>
                 <div class="clearfix cart-total">
-                  <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>RS600.00</span> </div>
+                  <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>RS{{$sub_total}}</span> </div>
                   <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
+                  <a href="{{ url('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                 <!-- /.cart-total--> 
                 
               </li>
@@ -124,7 +123,8 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class="active dropdown yamm-fw"> <a href="{{route('/')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                <li class="active dropdown yamm-fw">
+                 <a href="{{url('/')}}" >Home</a> </li>
                 
                 @foreach($categories as $key => $value)
                 <li class="dropdown yamm mega-menu"> 

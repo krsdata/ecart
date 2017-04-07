@@ -13,9 +13,7 @@
                                 
                                 <div style="width: 319px;" class="owl-item">
                                     <div class="single-product-gallery-item" id="slide1">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="{{ asset('public/enduser/assets/images/products/p8.jpg') }}">
-                                            <img class="img-responsive" alt="" src="{{ asset('public/enduser/assets/images/products/p8.jpg') }}">
-                                        </a>
+                                             <img style="width: 100%" src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt="">
                                     </div>
                                 </div>
 
@@ -29,7 +27,7 @@
 <!-- /.gallery-holder -->        			
 			<div class="col-sm-6 col-md-7 product-info-block">
 				<div class="product-info">
-					<h1 class="name">Floral Print Buttoned1</h1>
+					<h1 class="name">{{$product->product_title}}</h1>
 				 
 
 					<div class="stock-container info-container m-t-10">
@@ -48,7 +46,7 @@
 					</div><!-- /.stock-container -->
 
 					<div class="description-container m-t-20">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						 {!! str_limit($product->description,100) !!}
 					</div><!-- /.description-container -->
 
 					<div class="price-container info-container m-t-20">
@@ -57,8 +55,8 @@
 
 							<div class="col-sm-6">
 								<div class="price-box">
-									<span class="price">RS800.00</span>
-									<span class="price-strike">RS900.00</span>
+									<span class="price">RS{{$product->price-($product->price*$product->discount/100)}}</span>
+									<span class="price-strike">RS{{$product->price}}</span>
 								</div>
 							</div>
 
@@ -67,9 +65,7 @@
 									<a data-original-title="Wishlist" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="index.htm#">
 									    <i class="fa fa-heart"></i>
 									</a>
-									<a data-original-title="Add to Compare" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="index.htm#">
-									   <i class="fa fa-signal"></i>
-									</a>
+									 
 									<a data-original-title="E-mail" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="index.htm#">
 									    <i class="fa fa-envelope"></i>
 									</a>
@@ -90,18 +86,18 @@
 								<div class="cart-quantity">
 									<div class="quant-input">
 						                
-						                <input value="1" type="number" min="1">
+						                <input value="1" type="number" min="1" onchange="updateCart(this.value)">
 					              </div> 
 					            </div>
 							</div>
 
 							<div class="col-sm-2" style="margin-right: 70px;">
-								<a href="checkout" class="btn btn-primary">
+								<a href="{{ url('addToCart/'.$product->id) }}" id="addToCart" class="btn btn-primary">
                                 <i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
 							</div>
                             | 
                             <div class="col-sm-2">
-                                <a href="checkout" class="btn btn-success">
+                                <a href="{{ url('buyNow/'.$product->id) }}" class="btn btn-success">
                                 <i class="fa fa-shopping-cart inner-right-vs"></i> BUY </a>
                             </div>
 
@@ -122,9 +118,9 @@
                         <li class="active">
                             <a data-toggle="tab" href="index.htm#description">DESCRIPTION</a>
                         </li>
-                        <li>
+                       <!--  <li>
                             <a data-toggle="tab" href="index.htm#tags">TAGS</a>
-                        </li>
+                        </li> -->
                   </ul><!-- /.nav-tabs #product-tabs -->
             </div>
             <div class="col-sm-9"> 
@@ -132,37 +128,15 @@
                         
                             <div id="description" class="tab-pane in active">
                                 <div class="product-tab">
-                                    <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p class="text">
+                                    	
+                                    	 {!! $product->description !!}
+
+                                    </p>
                                 </div>      
                             </div><!-- /.tab-pane -->
 
-                            <div id="tags" class="tab-pane">
-                                  <div class="product-tag">
-                                        
-                                        <h4 class="title">Product Tags</h4>
-                                        <form role="form" class="form-inline form-cnt">
-                                              <div class="form-container">
-                                  
-                                                    <div class="form-group">
-                                                          <label for="exampleInputTag">Add Your Tags: </label>
-                                                          <input type="email" id="exampleInputTag" class="form-control txt">
-                                                          
-
-                                                    </div>
-
-                                                    <button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
-                                              </div><!-- /.form-container -->
-                                        </form><!-- /.form-cnt -->
-
-                                        <form role="form" class="form-inline form-cnt">
-                                              <div class="form-group">
-                                                    <label>&nbsp;</label>
-                                                    <span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
-                                              </div>
-                                        </form><!-- /.form-cnt -->
-
-                                  </div><!-- /.product-tab -->
-                            </div><!-- /.tab-pane -->
+                       
 
                       </div><!-- /.tab-content -->
                 </div><!-- /.col -->
@@ -170,3 +144,13 @@
     </div><!-- /.product-tabs -->
   
 </div>
+
+<script type="text/javascript">
+	
+	function updateCart(value) {
+		  
+		  var href = $('#addToCart').attr('href');
+
+		  $('#addToCart').attr('href',href+'?item='+value); 
+	}
+</script>

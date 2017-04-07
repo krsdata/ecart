@@ -15,18 +15,18 @@ Route::match(['post','get'],'cat','HomeController@index');
 
 
 
-Route::get('product-details',[
+Route::get('product-details/{id}',[
           'as' => 'productDetails',
           'uses'  => 'HomeController@productDetail'
         ]); 
 
 Route::get('product-category',[
-          'as' => 'productDetails',
+          'as' => 'productcategory',
           'uses'  => 'HomeController@productCategory'
         ]); 
 
 Route::get('product-category/{category}/{name}/{id}',[
-          'as' => 'productDetails', 
+          'as' => 'productcategoryByname', 
           'uses'  => 'HomeController@productCategory'
         ]); 
 
@@ -81,6 +81,12 @@ Route::group(['middleware' => ['web']], function(){
        'uses' =>   'ProductController@index'
        ]);
 
+Route::get('checkout',[
+          'as' => 'checkout',
+          'uses'  => 'ProductController@checkout'
+        ]); 
+
+
   Route::get('/updateCart', [ 
         'as' => '',
        'uses' =>   'ProductController@updateCart'
@@ -105,6 +111,12 @@ Route::group(['middleware' => ['web']], function(){
         'as' => '',
        'uses' =>   'ProductController@addToCart'
        ]);
+
+   Route::get('/buyNow/{id}', [ 
+        'as' => '',
+       'uses' =>   'ProductController@buyNow'
+       ]);
+
 
   Route::get('/removeItem/{id}',[ 
         'as' => '',

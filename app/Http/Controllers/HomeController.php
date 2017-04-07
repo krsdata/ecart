@@ -11,6 +11,19 @@ use Modules\Admin\Models\Product;
 use Modules\Admin\Models\Transaction;
 use View;
 use Html;
+use URL; 
+use Validator; 
+use Paginate;
+use Grids; 
+use Form;
+use Hash; 
+use Lang;
+use Session;
+use DB;
+use Route;
+use Crypt;
+use Redirect;
+use Cart;
 
 class HomeController extends Controller
 {
@@ -19,10 +32,13 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request) {
-
      
+
+      public function __construct(Request $request) {
+
         View::share('category_name',$request->segment(2));
+        View::share('total_item',Cart::content()->count());
+        View::share('sub_total',Cart::subtotal()); 
     }
 
     /**
@@ -98,43 +114,70 @@ class HomeController extends Controller
  /*----------*/
     public function checkout()
     {
-        return view('end-user.checkout');
-    }
-     /*----------*/
-    public function productCategory( $category=null, $name=null,$id=null)
-    { 
+         $request = new Request;
+
         
         $products = Product::with('category')->orderBy('id','asc')->get();
         $categories = Category::nested()->get(); 
+        return view('end-user.checkout',compact('categories','products','category'));   
+    }
 
+     /*----------*/
+    public function productCategory( $category=null, $name=null,$id=null)
+    { 
+         $request = new Request;
+
+        
+        $products = Product::with('category')->where('product_category',$name)->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
         return view('end-user.category',compact('categories','products','category'));   
     }
     /*----------*/
-    public function productDetail($category=null,$name=null,$id=null)
+    public function productDetail($id=null)
     {   
-        $products = Product::with('category')->orderBy('id','asc')->get();
+        
+        $product = Product::with('category')->where('id',$id)->first();
         $categories = Category::nested()->get(); 
+        
+        if($product==null)
+        {
+             $url =  URL::previous().'?error=InvaliAcess'; 
+              return Redirect::to($url);
+        }
 
-        return view('end-user.product-details',compact('categories','products','category')); 
+        return view('end-user.product-details',compact('categories','product')); 
     }
      /*----------*/
-     public function order()
-    {
-        return view('end-user.order');   
+     public function order(Request $request)
+    { 
+ 
+        $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+        return view('end-user.order',compact('categories','products','category'));   
+         
     }
      /*----------*/
     public function faq()
     {
+         $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+        return view('end-user.faq',compact('categories','products','category')); 
         return view('end-user.faq');   
     }
      /*----------*/
      public function trackOrder()
     {
+         $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+        return view('end-user.track-orders',compact('categories','products','category')); 
         return view('end-user.track-orders');   
     }
      /*----------*/
      public function tNc()
     {
+         $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+        return view('end-user.terms-conditions',compact('categories','products','category')); 
         return view('end-user.terms-conditions');   
     }
 }

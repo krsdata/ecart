@@ -11,117 +11,87 @@
                 <div class="shopping-cart">
                     <div class="shopping-cart-table ">
                         <div class="table-responsive">
+                         @if(count($cart))
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th class="cart-romove item">Remove</th>
                                         <th class="cart-description item">Image</th>
                                         <th class="cart-product-name item">Product Name</th>
-                                        <th class="cart-edit item">Edit</th>
+                                        <th class="cart-edit item">Price</th>
                                         <th class="cart-qty item">Quantity</th>
-                                        <th class="cart-sub-total item">Subtotal</th>
-                                        <th class="cart-total last-item">Grandtotal</th>
+                                        <th class="cart-sub-total item">Subtotal</th> 
                                     </tr>
                                 </thead><!-- /thead -->
-                                <tfoot>
+                               <!--  <tfoot>
                                     <tr>
                                         <td colspan="7">
                                             <div class="shopping-cart-btn">
                                                 <span class="">
-                                                    <a href="index.htm#" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+                                                    <a href="{{url('/')}}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
                                                     <a href="index.htm#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>
                                                 </span>
                                             </div><!-- /.shopping-cart-btn -->
                                         </td>
                                     </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td class="romove-item"><a href="index.htm#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="cart-image">
-                                            <a class="entry-thumbnail" href="detail.html">
-                                                <img src="{{ asset('public/enduser/assets/images/products/p1.jpg') }}" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="cart-product-name-info">
-                                            <h4 class="cart-product-description"><a href="detail.html">Floral Print Buttoned</a></h4>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="rating rateit-small rateit"><button style="display: none;" id="rateit-reset-2" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-2"></button><div aria-readonly="true" style="width: 70px; height: 14px;" id="rateit-range-2" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-2" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"><div class="rateit-selected" style="height: 14px; width: 56px;"></div><div class="rateit-hover" style="height:14px"></div></div></div>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="reviews">
-                                                        (06 Reviews)
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.row -->
-                                            <div class="cart-product-info">
-                                                                <span class="product-color">COLOR:<span>Blue</span></span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-edit"><a href="index.htm#" class="product-edit">Edit</a></td>
-                                        <td class="cart-product-quantity">
-                                            <div class="quant-input">
-                                                    <div class="arrows">
-                                                      <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                      <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                                                    </div>
-                                                    <input value="1" type="text">
-                                              </div>
-                                        </td>
-                                        <td class="cart-product-sub-total"><span class="cart-sub-total-price">RS300.00</span></td>
-                                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">RS300.00</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="romove-item"><a href="index.htm#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="cart-image">
-                                            <a class="entry-thumbnail" href="detail.html">
-                                                <img src="{{ asset('public/enduser/assets/images/products/p2.jpg') }}" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="cart-product-name-info">
-                                            <h4 class="cart-product-description"><a href="detail.html">Floral Print Buttoned</a></h4>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="rating rateit-small rateit"><button style="display: none;" id="rateit-reset-3" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-3"></button><div aria-readonly="true" style="width: 70px; height: 14px;" id="rateit-range-3" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-3" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"><div class="rateit-selected" style="height: 14px; width: 56px;"></div><div class="rateit-hover" style="height:14px"></div></div></div>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="reviews">
-                                                        (06 Reviews)
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.row -->
-                                            <div class="cart-product-info">
-                                            <span class="product-color">COLOR:<span>Pink</span></span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-edit"><a href="index.htm#" class="product-edit">Edit</a></td>
-                                        <td class="cart-product-quantity">
-                                            <div class="cart-quantity">
-                                                <div class="quant-input">
-                                                    <div class="arrows">
-                                                      <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                      <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                                                    </div>
-                                                    <input value="1" type="text">
-                                              </div>
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-sub-total"><span class="cart-sub-total-price">RS300.00</span></td>
-                                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">RS300.00</span></td>
-                                    </tr>
-                                </tbody><!-- /tbody -->
+                                </tfoot>  
+                                 <tbody>
+                                @foreach($cart as  $item)
+                                <tr>
+                                    <td class="cart_delete">
+                                      <a class="cart_quantity_delete" href="{{ url('removeItem/'.$item->id) }}"><i class="fa fa-times"></i>
+                                      </a>
+                                   
+                                    </td>
+                                    <td class=" cart-description item">
+                                    @foreach($product_photo as $key => $photo)
+                                    
+                                        @if($photo['id']==$item->id)
+                                         <img style="width: 100px;height: 100px;" src="{{ asset('storage/uploads/products/'. $photo['photo']) }}" alt="">
+                                         @endif
+                                     @endforeach
+                                    </td>
+
+                                    <td class="cart_description">
+                                        <h4><a href="">{{$item->name}}</a></h4>
+                                        <p>Web ID: {{$item->id}}</p>
+                                    </td>
+                                    <td class="cart_price">
+                                        <p>Rs {{$item->price}}</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_button">
+                                            <a class="cart_quantity_up" href="{{ url('updateCart?product_id='.$item->id.'&increment=1')}}"> + </a>
+                                            <input class="cart_quantity_input" type="text" name="quantity" value="{{$item->qty}}" autocomplete="off" size="2">
+                                            <a class="cart_quantity_down" href="{{ url('updateCart?product_id='.$item->id.'&decrease=1')}}"> - </a>
+                                        </div>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p class="cart_total_price">Rs {{ money_format('%!i', $item->subtotal) }}</p>
+                                    </td>  
+                                </tr> 
+                                @endforeach
+                                @else
+                            <p>You have no items in the shopping cart</p>
+                            @endif
+                            </tbody>
                             </table><!-- /table -->
                         </div>
+                        <hr>
                     </div><!-- /.shopping-cart-table -->                
                     <div class="col-md-4 col-sm-12 estimate-ship-tax">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>
-                                        <span class="estimate-title">Estimate shipping and tax</span>
-                                        <p>Enter your destination to get shipping and tax.</p>
+                                        <span class="estimate-title">Continue Shopping </span>
+                                        <p>Do you want to buy more...</p>
                                     </th>
+                                       <tr>
+                                    <td>
+                                        <a href="{{url('/')}}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+                                    </td>
+                                </tr>
                                 </tr>
                             </thead><!-- /thead -->
                             
@@ -138,6 +108,7 @@
                                         <p>Enter your coupon code if you have one..</p>
                                     </th>
                                 </tr>
+                             
                             </thead>
                             <tbody>
                                     <tr>
@@ -160,10 +131,10 @@
                                 <tr>
                                     <th>
                                         <div class="cart-sub-total">
-                                            <span class="inner-left-md">Subtotal INR 600.00 </span>
+                                            <span class="inner-left-md">Subtotal RS {{$sub_total}} </span>
                                         </div>
                                         <div class="cart-grand-total">
-                                            <span class="inner-left-md">Total INR 600.00 </span>
+                                            <span class="inner-left-md">Total RS {{$sub_total}} </span>
                                         </div>
                                     </th>
                                 </tr>

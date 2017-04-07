@@ -45,6 +45,8 @@ class ProductController extends Controller {
     public function __construct(Request $request) {
 
         View::share('category_name', $request->segment(1));
+        View::share('total_item',Cart::content()->count());
+        View::share('sub_total',Cart::subtotal()); 
     }
 
     protected $categories;
@@ -64,16 +66,72 @@ class ProductController extends Controller {
          
         return view('cart', compact('cart','product_photo'));
     }
+
+
+    public function checkout(Request $request) 
+    {  
+        $cart = Cart::content();  
+        $pid = [];
+        foreach ($cart as $key => $value) {
+            $pid[] = $value->id;
+        }
+        $product_photo =   Product::whereIn('id',$pid)->get(['photo','id'])->toArray();
+       // dd($product_photo);
+       // dd($cart);
+        $products = Product::with('category')->whereIn('id',$pid)->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        return view('end-user.checkout',compact('categories','products','category','cart','product_photo'));  
+    }
+
+
     public function addToCart(Request $request, $id) 
     { 
         
+         $item =  $request->get('item'); 
+         if($item ){
+            $qty = substr($item,-1);
+         } else{
+            $qty = 1;
+         } 
         if ($request->isMethod('get')) {
             $product_id = $request->get('id');
             $product = Product::find($id);   
-            Cart::add(array('id' => $product->id, 'name' => $product->product_title, 'qty' => 1, 'price' => $product->price,'photo'=>$product->photo));
+            Cart::add(array('id' => $product->id, 'name' => $product->product_title, 'qty' => $qty, 'price' => $product->price,'photo'=>$product->photo));
         }
-        $cart = Cart::content(); 
-        return true; 
+        $cart = Cart::content();  
+       // $request->session()->put('key', 'value');
+         return Redirect::to(url()->previous());
+         
+    }
+
+    public function buyNow(Request $request, $id) 
+    { 
+         $item =  $request->get('item'); 
+         if($item ){
+            $qty = substr($item,-1);
+         } else{
+            $qty = 1;
+         } 
+         $is_item_exist = 0;
+        foreach(Cart::content() as $row) {
+            if($row->id==$id)
+            {
+                $is_item_exist++;
+                break;
+            }
+        }
+        if($is_item_exist==0){
+            if ($request->isMethod('get')) {
+                $product_id = $request->get('id');
+                $product = Product::find($id);   
+                Cart::add(array('id' => $product->id, 'name' => $product->product_title, 'qty' => $qty, 'price' => $product->price,'photo'=>$product->photo));
+            }   
+        }
+           
+        $cart = Cart::content();  
+       // $request->session()->put('key', 'value');
+         return Redirect::to('checkout');
          
     }
 
@@ -92,7 +150,7 @@ class ProductController extends Controller {
               $item = Cart::get($rowId);
               $qty = intval($item->qty)+1;
               Cart::update($rowId,$qty);
-            return Redirect::to('cart');
+            return Redirect::to('checkout');
         }
         elseif ($request->get('product_id') && ($request->get('decrease')) == 1) {  
            $rowId = Cart::search(function($key, $value) use($request)
@@ -106,7 +164,7 @@ class ProductController extends Controller {
                 $total_qty = $value->qty-1;
             }
             Cart::update($rowId, intval($total_qty));
-            return Redirect::to('cart');
+            return Redirect::to('checkout');
         }
     }
 
@@ -177,6 +235,6 @@ class ProductController extends Controller {
         }
         $item = Cart::get($rowId); 
         Cart::remove($rowId);
-        return Redirect::to('cart'); 
+        return Redirect::to('checkout');
     }
 }
