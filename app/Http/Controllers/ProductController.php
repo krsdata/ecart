@@ -128,6 +128,21 @@ class ProductController extends Controller {
        //dd($products ); 
        $categories = Category::nested()->get(); 
 
+      // $categories = Category::with('parent','children')->where('parent_id',0)->get();
+
+     /* $s = $categories[2]->children; 
+      $ss = $s[1]->children; 
+        foreach($categories as $category){
+            echo  $category->name.'<br>';
+
+                if(count($category->children)){
+                   dd($category->children);
+                } 
+
+        }
+          */                   
+
+
 
        $banner_path1   = asset('public/enduser/assets/images/sliders/01.jpg');
        $banner_path2   = asset('public/enduser/assets/images/sliders/02.jpg');

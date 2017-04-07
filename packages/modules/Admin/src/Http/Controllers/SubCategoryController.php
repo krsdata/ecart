@@ -99,15 +99,34 @@ class SubCategoryController extends Controller {
      * Save Group method
      * */
 
+     
+
     public function store(SubCategoryRequest $request, SubCategory $category) 
     {
         $parent_id = $request->get('category_id');
+        $level=1;
+        while (1) {
+           $data = SubCategory::find($parent_id);
+           
+            if($data)
+            {
+                $level++;
+                $parent_id = $data->parent_id;
+                $cname[] = ['id'=>$data->id, 'cname'=>$data->name,'level'=>$data->level];
+            }else{
+                break;
+            }
+        }
+
+      //  dd($cname);
+
         $cat = new Category;
-        $cat->name =  $request->get('sub_category_name');
-        $cat->slug = strtolower(str_slug($request->get('sub_category_name')));
-        $cat->parent_id = $parent_id; 
-        $cat->category_name         =  $request->get('sub_category_name');
-        $cat->sub_category_name     =  $request->get('sub_category_name');
+        $cat->name                  =   $request->get('sub_category_name');
+        $cat->slug                  =   strtolower(str_slug($request->get('sub_category_name')));
+        $cat->parent_id             =   $request->get('category_id'); 
+        $cat->category_name         =   $request->get('sub_category_name');
+        $cat->sub_category_name     =   $request->get('sub_category_name');
+        $cat->level                 =   $level;
         $cat->save();  
        
         return Redirect::to(route('category'))
@@ -137,13 +156,31 @@ class SubCategoryController extends Controller {
 
     public function update(Request $request, SubCategory $category) {
         
-        $parent_id = $request->get('category_id');
-        $cat = Category::find($category->id);
-        $cat->name =  $request->get('sub_category_name');
-        $cat->slug = strtolower(str_slug($request->get('sub_category_name')));
-        $cat->parent_id = $parent_id; 
-        $cat->category_name         =  $request->get('sub_category_name');
-        $cat->sub_category_name     =  $request->get('sub_category_name');
+        $parent_id = $request->get('category_id'); 
+        $level=1;
+        while (1) {
+           $data = SubCategory::find($parent_id);
+           
+            if($data)
+            {
+                $level++;
+                $parent_id = $data->parent_id;
+              //  $cname[] = ['id'=>$data->id, 'cname'=>$data->name,'level'=>$data->level];
+            }else{
+                break;
+            }
+        }
+
+        
+ 
+
+        $cat                        = Category::find($category->id);
+        $cat->name                  = $request->get('sub_category_name');
+        $cat->slug                  = strtolower(str_slug($request->get('sub_category_name')));
+        $cat->parent_id             = $request->get('category_id');
+        $cat->category_name         = $request->get('sub_category_name');
+        $cat->sub_category_name     = $request->get('sub_category_name');
+         $cat->level                = $level;
         $cat->save(); 
 
 

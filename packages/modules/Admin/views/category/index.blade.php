@@ -19,9 +19,12 @@
                             <div class="row">
                                 <div class="box">
                                     <div class="box-header">
-                                        
+                                        <h3> Category & Sub-Category List </h3>
+                                           {!! $html !!}
+                                           <hr>
+
                                            <h3> Category list</h3>
-                                <hr>
+                                      <hr>
                                         <div class="col-md-2 pull-right">
                                             <div style="width: 150px;" class="input-group"> 
                                                 <a href="{{ route('category.create')}}">
@@ -40,6 +43,7 @@
                                          </div>
                                     @endif
                                       
+
                                 <div class="box-body table-responsive no-padding" >
                                   
                                         <table class="table table-hover table-condensed">
