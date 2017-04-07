@@ -1,4 +1,5 @@
 <?php
+
       Route::get('admin/login','Modules\Admin\Http\Controllers\AuthController@index');
       Route::get('logout','Modules\Admin\Http\Controllers\AuthController@logout');  
       Route::get('admin/signUp','Modules\Admin\Http\Controllers\AuthController@signUp'); 

@@ -41,7 +41,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'record_per_page' => 15,
+    'record_per_page' => 20,
 
     /*
     |--------------------------------------------------------------------------

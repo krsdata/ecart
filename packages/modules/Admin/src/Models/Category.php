@@ -49,6 +49,16 @@ class Category extends Eloquent {
        
         return $this->belongsTo('Modules\Admin\Models\Category','id','parent_id');
     }
+
+    public function parent()
+    {
+        return $this->belongsTo('Modules\Admin\Models\Category', 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('Modules\Admin\Models\Category', 'parent_id','id');
+    }
   
     
   
