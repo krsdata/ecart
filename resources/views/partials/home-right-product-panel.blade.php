@@ -115,7 +115,7 @@
 
               @foreach($products as $key2 => $product)  
               @if($value['id']==$product->category->parent_id)  
-                <div class="item item-carousel">
+                  <div class="item item-carousel">
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
@@ -123,7 +123,7 @@
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
-                        <div class="tag hot"><span>hot</span></div>
+                        <div class="tag hot"><span>new</span></div>
                       </div>
                       <!-- /.product-image -->
                       
@@ -139,13 +139,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
@@ -189,7 +185,7 @@
           @foreach($categories as $key => $value)   
             @foreach($products as $key2 => $product)  
                 @if($value['id']==$product->category->parent_id && str_contains($value['name'],'Herbal'))  
-                <div class="item item-carousel">
+                  <div class="item item-carousel">
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
@@ -197,7 +193,7 @@
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
-                        <div class="tag hot"><span>hot</span></div>
+                        <div class="tag hot"><span>new</span></div>
                       </div>
                       <!-- /.product-image -->
                       
@@ -205,7 +201,7 @@
                         <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
-                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
+                       <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
                         <!-- /.product-price --> 
                         
                       </div>
@@ -213,13 +209,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
@@ -247,7 +239,7 @@
           @foreach($categories as $key => $value)   
             @foreach($products as $key2 => $product)  
                 @if($value['id']==$product->category->parent_id && str_contains($value['name'],'Electronic'))  
-                <div class="item item-carousel">
+                    <div class="item item-carousel">
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
@@ -255,7 +247,7 @@
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
-                        <div class="tag hot"><span>hot</span></div>
+                        <div class="tag hot"><span>new</span></div>
                       </div>
                       <!-- /.product-image -->
                       
@@ -263,7 +255,7 @@
                         <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
-                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
+                       <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
                         <!-- /.product-price --> 
                         
                       </div>
@@ -271,13 +263,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
@@ -305,7 +293,7 @@
           @foreach($categories as $key => $value)   
             @foreach($products as $key2 => $product)  
                 @if($value['id']==$product->category->parent_id && str_contains($value['name'],'Cloth'))  
-                <div class="item item-carousel">
+                  <div class="item item-carousel">
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
@@ -313,7 +301,7 @@
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
-                        <div class="tag hot"><span>hot</span></div>
+                        <div class="tag hot"><span>new</span></div>
                       </div>
                       <!-- /.product-image -->
                       
@@ -321,7 +309,7 @@
                         <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
-                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
+                       <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
                         <!-- /.product-price --> 
                         
                       </div>
@@ -329,13 +317,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
@@ -364,7 +348,7 @@
           @foreach($categories as $key => $value)   
             @foreach($products as $key2 => $product)  
               @if($value['id']==$product->category->parent_id && str_contains($value['name'],'Watch'))  
-                <div class="item item-carousel">
+                  <div class="item item-carousel">
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
@@ -372,7 +356,7 @@
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
-                        <div class="tag hot"><span>hot</span></div>
+                        <div class="tag hot"><span>new</span></div>
                       </div>
                       <!-- /.product-image -->
                       
@@ -380,7 +364,7 @@
                         <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
-                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
+                       <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
                         <!-- /.product-price --> 
                         
                       </div>
@@ -388,13 +372,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
@@ -542,15 +522,15 @@
             @foreach($product_new as $key2 => $product) 
               @if($value['id']==$product->category->parent_id)  
 
-                <div class="item item-carousel">
-                  <div class="products"> 
+                 <div class="item item-carousel">
+                  <div class="products">
                     <div class="product">
                       <div class="product-image">
                         <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
-                        <div class="tag hot"><span>hot</span></div>
+                        <div class="tag hot"><span>new</span></div>
                       </div>
                       <!-- /.product-image -->
                       
@@ -558,7 +538,7 @@
                         <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
-                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
+                       <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
                         <!-- /.product-price --> 
                         
                       </div>
@@ -566,13 +546,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
