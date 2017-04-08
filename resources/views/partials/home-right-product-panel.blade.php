@@ -57,7 +57,7 @@
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -66,7 +66,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -77,13 +77,9 @@
                       <div class="cart clearfix animate-effect">
                         <div class="action">
                           <ul class="list-unstyled">
-                            <li class="add-cart-button btn-group">
-                              <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                            </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                            <li class="lnk"> 
-                            </li>
+                             
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Show product details"> <i class="fa fa-shopping-cart"></i>  View Details </a> </li>
+                            
                           </ul>
                         </div>
                         <!-- /.action --> 
@@ -123,7 +119,7 @@
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -132,7 +128,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                        <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -147,7 +143,7 @@
                               <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                               <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                             <li class="lnk"> 
                             </li>
                           </ul>
@@ -197,7 +193,7 @@
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -206,7 +202,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                         <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -221,7 +217,7 @@
                               <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                               <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                             <li class="lnk"> 
                             </li>
                           </ul>
@@ -255,7 +251,7 @@
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -264,7 +260,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                         <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -279,7 +275,7 @@
                               <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                               <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                             <li class="lnk"> 
                             </li>
                           </ul>
@@ -313,7 +309,7 @@
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -322,7 +318,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                         <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -337,7 +333,7 @@
                               <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                               <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                             <li class="lnk"> 
                             </li>
                           </ul>
@@ -372,7 +368,7 @@
                   <div class="products">
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -381,7 +377,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                         <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -396,7 +392,7 @@
                               <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                               <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                             <li class="lnk"> 
                             </li>
                           </ul>
@@ -435,7 +431,7 @@
           <div class="item">
             <div class="blog-post">
               <div class="blog-post-image">
-                <div class="image"> <a href="blog.html"><img src="{{ asset('public/enduser/assets/images/blog-post/post1.jpg') }}" alt=""></a> </div>
+                <div class="image"> <a href="#"><img src="{{ asset('public/enduser/assets/images/blog-post/post1.jpg') }}" alt=""></a> </div>
               </div>
               <!-- /.blog-post-image -->
               
@@ -550,7 +546,7 @@
                   <div class="products"> 
                     <div class="product">
                       <div class="product-image">
-                        <div class="image"> <a href="product-category">
+                        <div class="image"> <a href="{{ url('product-details/'.$product->id) }}">
                           <img  src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt=""></a> 
                         </div>
                         <!-- /.image --> 
@@ -559,7 +555,7 @@
                       <!-- /.product-image -->
                       
                       <div class="product-info text-left">
-                        <h3 class="name"><a href="product-category">{{$product->product_title}}</a></h3>
+                        <h3 class="name"><a href="{{ url('product-details/'.$product->id) }}">{{$product->product_title}}</a></h3>
                         <div class="rating rateit-small"></div>
                         <div class="description"></div>
                         <div class="product-price"> <span class="price"> RS {{$product->price-($product->price*$product->discount)/100}} </span> <span class="price-before-discount">RS {{$product->price}}</span> </div>
@@ -574,7 +570,7 @@
                               <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                               <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
-                            <li class="lnk wishlist"> <a class="add-to-cart" href="product-category" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk wishlist"> <a class="add-to-cart" href="{{ url('product-details/'.$product->id) }}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                             <li class="lnk"> 
                             </li>
                           </ul>
