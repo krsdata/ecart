@@ -421,8 +421,9 @@ a {
   color: #e40046;
 }
 .mega-menu .dropdown-menu {
-width:100%;
-left:0px 
+width:auto;
+left:inherit;
+border-bottom: 2px solid #e40046; 
 }
 
 .navbar-nav>li>.dropdown-menu { box-shadow:0 2px 4px 0 rgba(0,0,0,.05);}
