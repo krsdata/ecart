@@ -94,11 +94,49 @@ class UserController extends Controller
                             ]
                         );
               }  
-        }
+        } 
+    }
+
+    public function userSignup(Request $request,User $user)
+    {   
+        $input['first_name']    = $request->input('first_name');
+        $input['email']         = $request->input('email'); 
+        $input['password']      = Hash::make($request->input('password'));
+        
+
+        //Server side valiation
+        $validator = Validator::make($request->all(), [
+            'first_name'        =>  'required',
+            'email'     =>  'required|email|unique:users',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password'
+        ]);
+        /** Return Error Message **/
+        if ($validator->fails()) {
+                    $error_msg  =   [];
+            foreach ( $validator->messages()->messages() as $key => $value) {
+                          $error_msg[$key] = $value[0];
+                    }
+          
+              return redirect()
+                          ->back()
+                          ->withInput()  
+                          ->withErrors(['message'=>$error_msg]);
+        }else{
+                $user = User::create($input); 
        
-
-
-      
+                $credentials = ['email' => Input::get('email'), 'password' => Input::get('password')];  
+            
+                if (Auth::attempt($credentials)) {
+                     $request->session()->put('current_user',Auth::user()); 
+                     return redirect()
+                          ->back()
+                          ->withInput()  
+                          ->withErrors(['message'=>'success']);
+                        
+                  }  
+            }  
+        
     }
     
     public function register(Request $request)

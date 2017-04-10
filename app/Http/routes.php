@@ -179,7 +179,32 @@ Route::get('signout', function(App\User $user , Illuminate\Http\Request $request
     return redirect()->intended('/'); 
 
 });
-           
+   
+
+
+Route::get('myaccount/login',[
+          'as' => 'showLoginForm',
+          'uses'  => 'ProductController@showLoginForm'
+        ]); 
+
+Route::get('myaccount',[
+          'as' => 'myaccount',
+          'uses'  => 'ProductController@myaccount'
+        ]); 
+
+ 
+        
+Route::get('myaccount/signup',[
+          'as' => 'myaccount-signup',
+          'uses'  => 'ProductController@showSignupForm'
+        ]); 
+
+Route::post('myaccount/signup',[
+          'as' => 'userSignup',
+          'uses'  => 'UserController@userSignup'
+        ]); 
+        
+        
 
 
 Route::post('login',function(App\User $user , Illuminate\Http\Request $request){ 

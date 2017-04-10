@@ -356,6 +356,12 @@ class ProductController extends Controller {
     {
         
         $cart       = Cart::content();
+
+        if($cart->count()==0)
+        {
+           return  Redirect::to('checkout');
+        }
+
         $products   = Product::with('category')->orderBy('id','asc')->get();
         $categories = Category::nested()->get(); 
 
@@ -377,12 +383,50 @@ class ProductController extends Controller {
             $transaction->save();
              
         } 
+        $cart = Cart::content(); 
+        foreach ($cart as $key => $value) {
+             Cart::remove($key);
+        }
 
-        $request->session()->forget('current_user');
-        $request->session()->flush(); 
+      //   $request->session()->flush();
+       // $request->session()->keep(['current_user']); 
 
         return view('end-user.thanku',compact('categories','products','category','cart','billing','shipping'));
 
     }
-}
+    public function showLoginForm(Request $request)
+    {
+         $cart       = Cart::content(); 
+        $products   = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+        return view('end-user.login',compact('categories','products','category','cart'));
+
+    }
+    public function showSignupForm(Request $request)
+    {
+        $cart       = Cart::content(); 
+        $products   = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        return view('end-user.register',compact('categories','products','category','cart'));
+
+    }
+
+    public function myaccount()
+    {
+        $cart = Cart::content();
+        $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        $billing    = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',1)->first(); 
+
+        $shipping   = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',2)->first(); 
+        $transaction                = Transaction::where('user_id',$this->user_id)->get();
+
+
+        return view('end-user.myaccount',compact('transaction','categories','products','category','cart','billing','shipping'));
+
+    }
+    
+}   
 

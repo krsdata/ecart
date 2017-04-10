@@ -8,12 +8,12 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="##">My Account</a></li>  
+            <li><a href="{{ url('myaccount') }}">My Account</a></li>  
             <li><a href="{{ url('checkout') }}">My Cart</a></li>
             <li><a href="{{ url('checkout') }}">Checkout</a></li>
             <li>
                 @if($userData==null)
-                  <a href="#">Login</a>
+                  <a href="{{url('myaccount/login')}}">Login</a>
                   @else
                   <a href="{{url('signout')}}">Logout</a>
                   @endif
@@ -24,7 +24,7 @@
         
         
         <!-- /.cnt-cart -->
-        <div class="offer-text">Save up to 12% everyday on all products</div>
+        <div class="offer-text">Save up to 10% everyday on all products</div>
         <div class="clearfix"></div>
       </div>
       <!-- /.header-top-inner --> 
