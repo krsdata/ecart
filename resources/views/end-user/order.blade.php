@@ -23,8 +23,8 @@
 
     <!-- panel-heading -->
         <div class="panel-heading">
-        <h4 class="unicase-checkout-title">
-            <a data-toggle="{{ ($tab==0)?'':'collapse'}}" class="" data-parent="#accordion" href="index.htm#collapseOne">
+        <h4 class="unicase-checkout-title"> 
+            <a  data-toggle="collapse" class="{{ ($tab==0)?'':'collapse'}}"  data-parent="#accordion" href="index.htm#collapseOne">
               <span>1</span>Checkout Method
             </a>
          </h4>
