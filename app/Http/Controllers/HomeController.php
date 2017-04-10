@@ -34,11 +34,12 @@ class HomeController extends Controller
      */
      
 
-      public function __construct(Request $request) {
-
+      public function __construct(Request $request) { 
+        
         View::share('category_name',$request->segment(2));
         View::share('total_item',Cart::content()->count());
         View::share('sub_total',Cart::subtotal()); 
+        View::share('userData',$request->session()->get('current_user'));
     }
 
     /**
@@ -148,12 +149,12 @@ class HomeController extends Controller
         return view('end-user.product-details',compact('categories','product')); 
     }
      /*----------*/
-     public function order(Request $request)
+    public function order(Request $request)
     { 
- 
+        $cart = Cart::content();
         $products = Product::with('category')->orderBy('id','asc')->get();
         $categories = Category::nested()->get(); 
-        return view('end-user.order',compact('categories','products','category'));   
+        return view('end-user.order',compact('categories','products','category','cart'));   
          
     }
      /*----------*/

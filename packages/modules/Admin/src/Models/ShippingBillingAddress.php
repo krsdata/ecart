@@ -7,7 +7,7 @@ use Modules\Admin\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Response;
 
-class shippingBillingAddress extends Eloquent {
+class ShippingBillingAddress extends Eloquent {
 
    
     /**

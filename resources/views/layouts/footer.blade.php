@@ -61,19 +61,19 @@
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inveRSe"></i> </span> </div>
                 <div class="media-body">
-                  <p>Lorem ipsum dolor sit amet is dummy text for describing</p>
+                  <p> Plot No. 21/5, 1st Floor, office No. 101 & 102, Vijay Nagar, near Life Care Hospital, Indore – 452001</p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inveRSe"></i> </span> </div>
                 <div class="media-body">
-                  <p>+(888) 123-4567<br>
-                    +(888) 456-7890</p>
+                  <p>+91 - 8370005001 <br>
+                    </p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inveRSe"></i> </span> </div>
-                <div class="media-body"> <span><a href="##">example@domainname.com</a></span> </div>
+                <div class="media-body"> <span><a href="##">info@shpersquare.com</a></span> </div>
               </li>
             </ul>
           </div>
@@ -91,8 +91,7 @@
             <ul class='list-unstyled'>
               <li class="fiRSt"><a href="##" title="Contact us">My Account</a></li>
               <li><a href="##" title="About us">Order History</a></li>
-              <li><a href="##" title="faq">FAQ</a></li>
-              <li><a href="##" title="Popular Searches">Specials</a></li>
+              <li><a href="{{url('faq')}}" title="faq">FAQ</a></li> 
               <li class="last"><a href="##" title="Where is my order?">Help Center</a></li>
             </ul>
           </div>
@@ -111,8 +110,7 @@
               <li class="fiRSt"><a title="Your Account" href="##">About us</a></li>
               <li><a title="Information" href="##">Customer Service</a></li>
               <li><a title="Addresses" href="##">Company</a></li>
-              <li><a title="Addresses" href="##">Investor Relations</a></li>
-              <li class="last"><a title="OrdeRS History" href="##">Advanced Search</a></li>
+              <li><a title="Addresses" href="##">Investor Relations</a></li> 
             </ul>
           </div>
           <!-- /.module-body --> 
@@ -127,7 +125,6 @@
           
           <div class="module-body">
             <ul class='list-unstyled'>
-              <li class="fiRSt"><a href="##" title="About us">Shopping Guide</a></li>
               <li><a href="##" title="Blog">Blog</a></li>
               <li><a href="##" title="Company">Company</a></li>
               <li><a href="##" title="Investor Relations">Investor Relations</a></li>
@@ -167,6 +164,12 @@
     </div>
   </div>
 </footer>
+
+    <script type="text/javascript">
+        
+        var url= "{{ url('/') }}";
+
+    </script>
     <!-- ============================================================= FOOTER : END============================================================= --> 
 
     <!-- For demo purposes – can be removed on production --> 
@@ -174,7 +177,7 @@
     <!-- For demo purposes – can be removed on production : End --> 
 
     <!-- JavaScripts placed at the end of the document so the pages load faster --> 
-     <script src="{{ asset('public/enduser/assets/js/jquery-1.11.1.min.js') }}"></script> 
+    <script src="{{ asset('public/enduser/assets/js/jquery-1.11.1.min.js') }}"></script> 
     <script src="{{ asset('public/enduser/assets/js/bootstrap.min.js') }}"></script> 
     <script src="{{ asset('public/enduser/assets/js/bootstrap-hover-dropdown.min.js') }}"></script> 
     <script src="{{ asset('public/enduser/assets/js/owl.carousel.min.js') }}"></script> 
@@ -186,5 +189,9 @@
     <script src="{{ asset('public/enduser/assets/js/bootstrap-select.min.js') }}"></script> 
     <script src="{{ asset('public/enduser/assets/js/wow.min.js') }}"></script> 
     <script src="{{ asset('public/enduser/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('public/assets/js/bootbox.js') }}"></script>
+    <script src="{{ asset('public/assets/js/common.js') }}"></script> 
+
+    
   </body>
 </html>

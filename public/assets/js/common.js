@@ -1,76 +1,7 @@
 
-$(function() {
-     var d = new Date(); // for now
-    
-    $('.datepicker').datepicker({
-        dateFormat: 'yy-dd-mm',
-        onSelect: function(datetext){
 
-            datetext=datetext+" "+d.getHours()+": "+d.getMinutes()+": "+d.getSeconds();
-            $('.datepicker').val(datetext);
-        },
-    });  
-     
-/* 
-Method : Delete particulare record
-@param : id,status
-Author : Kundan Roy
-Description : delete particular record from dataBase
-*/
-$('button[name="remove_levels"]').on('click', function(e){
-//    bootbox.confirm('hello');
-     var self = $(this);   
-    var form = $(this).closest('form'); 
-    e.preventDefault(); 
-    
-   bootbox.confirm('<b><h3>Are you sure?</h3></b>',function(result){
-	if(result)
-	{
-         var id = self.attr('id');
-         
-	    $('#deleteForm_'+id).submit();
-	}   
- 	
-   });
-});
-                                    
-	 	
-    
-    $('#dropoff_date').datepicker({});
+//=============Checkout====================
 
-    $('.email-error').css('width', '100%');
-
-    $("#user_login").validate({
-        errorLabelContainer: '.error-loc',
-        rules: {
-            email: {
-                required: true,
-                email: true
-            },
-            password: {
-                required: true,
-            }
-        },
-        // Specify the validation error messages
-        messages: {
-            email: {
-                required: email_req},
-            password: {
-                required: password_req,
-            },
-        },
-        submitHandler: function(event) {
-            $("#user_login").submit();
-        }
-    });
-
-});
-/* 
-Method : changeStatus
-@param : id,controllerName (example user)
-Author : Kundan Roy
-Description : Change the status of record to activate or deactivate
-*/
 function changeStatus(id,method)
 {
     var status =  $('#'+id).attr('data'); 
@@ -83,8 +14,8 @@ function changeStatus(id,method)
         },
         success: function(response) {
             
-	  //bootbox.alert('Activated');            
-		if(response==1)
+      //bootbox.alert('Activated');            
+        if(response==1)
             {
                 $('#'+id).html('Active'); 
                 $('#'+id).attr('data',response);
@@ -102,257 +33,118 @@ function changeStatus(id,method)
         }
     });
 }
-/* 
-Method : changeAllStatus
-@param : id,controllerName (example user)
-Author : Kundan Roy
-Description : Change the status of all record to activate or deactivate
-*/
 
-function changeAllStatus(id,method,status)
-{
-    //var status =  $('#'+id).attr('data');
-    //alert(url); return false;
+ function billing()
+{ 
+    
+
+    var formdata =  $('form#billing').serialize(); 
     $.ajax({
-        type: "GET",
-        data: {id: id,status:status},
-        url: url+'/'+method,
+        type: "POST", 
+        url: url+'/billing',
+        data : formdata,
+
         beforeSend: function() {
-           $('#'+id).html('Processing')
+           //$('#'+id).html('Processing');
         },
+         dataType: "json",
+        success: function(response) {
+            bootbox.alert(response);
+            if(response.code==200)
+            { 
+                var msg = response.msg;
+               // bootbox.alert(msg); 
+                    $('#collapse_three').trigger("click");
+            }else
+            {   
+            }
+        }
+    });
+}
+
+
+function loginBtn()
+{
+
+ $('#register').remove(); 
+ $('#collapseTwo').addClass('in');
+ $('#collapsed_biling').removeClass("collapsed");   
+
+ 
+   var formdata =  $('form#loginForm').serialize();
+
+    $.ajax({
+        type: "POST", 
+        url: url+'/Ajaxlogin',
+        data : formdata,
+
+        beforeSend: function() {
+           //$('#'+id).html('Processing');
+        },
+         dataType: "json",
         success: function(response) {
             
-            if(response==1)
-            {
-                $('#'+id).html('Approved'); 
-                $('#'+id).attr('data',response);
-                $('#'+id).removeClass('label label-warning status').addClass('label label-success status');
-                
-                  
-                
-            }else if(response==2)
-            {
-                $('#'+id).html('Not Approve'); 
-                $('#'+id).attr('data',response);
-                $('#'+id).removeClass('label label-success status').addClass('label label-warning status');
-                
+            if(response.code==200)
+            { 
+                var msg = response.msg;
+               // bootbox.alert(msg); 
+                $('#register').remove();
+            }else
+            {   var msg = response.msg;
+                $('#loginError').html(msg);
             }
-            else
-            {
-                $('#'+id).html('Yet not Approve'); 
-                $('#'+id).attr('data',response);
-                $('#'+id).removeClass('label label-success status').addClass('label label-warning status');
+        }
+    });
+}
+
+function signUp()
+{
+    var formdata =  $('form#register').serialize();
+    $('#regErr').html('');
+    $.ajax({
+        type: "POST", 
+        url: url+'/signup',
+        data : formdata,
+
+        beforeSend: function() {
+           //$('#'+id).html('Processing');
+        },
+         dataType: "json",
+        success: function(response) {
+            
+
+
+             if(response.status==0)
+             {
+                var html='<br>';
+                if(response.message.first_name)
+                {
+                    html += response.message.first_name+'<br>';
+                }
+                if(response.message.email)
+                {
+                    html += response.message.email+'<br>';
+                }
+                if(response.message.confirm_password)
+                {
+                    html +=  response.message.confirm_password+'<br>';
+                }
+                if(response.message.password)
+                {
+                    html += response.message.password+'<br>';
+                }
+                 
+                 $('#regErr').html(html);
                 
-            }
+             }
+            if(response.status==1)
+             {
+                   location.reload();
+             }
+
+            console.log(response.message.confirm_password);
         }
     });
 
 
 }
-/************28/12/2015[Ismael]***************/
-var Title1='This field is required';
-$(document).ready(function(){
-$("#group_title").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            Title: {
-                required: true,                    
-            }
-        },
-        // Specify the validation error messages
-        messages: {
-            Title: {
-                required: Title1               
-                },           
-        },
-        submitHandler: function(event) {
-             $("#group_title").submit();
-         }
-    });
-
-/***********for users**************/
-var firstname_msg="First Name is required."; 
-var email_msg="Email Should be Validate.";
-var pwd_msg="Password is required.";
-
-$('#saveBtn').click(function(){
-	//alert('saveBtn');
-});
-
-
-$("#users_form1").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            first_name: {
-                required: true,                    
-            },
-            
-            email: {
-                required: true,
-                email: true
-            },            
-            password: {
-                required: true,
-            }     
-        },
-        // Specify the validation error messages
-        messages: {
-           	first_name: {
-                required: firstname_msg               
-                },  
-            email: {
-                required: email_msg               
-                },
-            password: {
-                required: pwd_msg,
-                },     
-        },
-        submitHandler: function(event) {
-	    
-             $("#users_form").submit();
-             return false;
-         }
-    });
-
-/***************for package*******************/
-var namefr="NameFR Should be filled.";
-var nameen="NameEN Should be filled.";
-var price="Price Should be filled and must be numeric";
-var month="Month Should be filled.";
-$("#package").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            NameFR: {
-                required: true,                    
-            },
-            NameEN: {
-                required: true,                    
-            }
-            ,
-            Price: {
-                required: true, 
-                            
-            }
-            ,
-            Month: {
-                required: true,                    
-            }
-        },
-        // Specify the validation error messages
-        messages: {
-            NameFR: {
-                required: namefr               
-                }, 
-            NameEN: {
-                required: nameen               
-                }, 
-            Price: {
-                required: price 
-                             
-                },
-            Month: {
-                required: month               
-                },           
-        },
-        submitHandler: function(event) {
-             $("#package").submit();
-         }
-    });
-/*****************building**********************/
-var Title_img="Title Should be filled.";
-var file_name="File name Should be filled.";
-$("#building").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            Title: {
-                required: true,                    
-            },
-            File_name: {
-                required: true,                    
-            }                    
-        },
-        // Specify the validation error messages
-        messages: {
-            Title: {
-                required: Title_img               
-                }, 
-            File_name: {
-                required: file_name               
-                }       
-        },
-        submitHandler: function(event) {
-             $("#building").submit();
-         }
-    });
-
-var price_by_month1="Price by month Should be filled.";
-$("#building_rent").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            price_by_month: {
-                required: true,                    
-            }                  
-        },
-        // Specify the validation error messages
-        messages: {
-            price_by_month: {
-                required: price_by_month1               
-                }      
-        },
-        submitHandler: function(event) {
-             $("#building_rent").submit();
-         }
-    });
-var inclusion="Inclusion Should be filled.";
-$("#building_inc").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            Inclusion: {
-                required: true,                    
-            }                  
-        },
-        // Specify the validation error messages
-        messages: {
-            Inclusion: {
-                required: inclusion               
-                }      
-        },
-        submitHandler: function(event) {
-             $("#building_inc").submit();
-         }
-    });
-
-var exclusion="Exclusion Should be filled.";
-$("#building_exc").validate({          
-        errorClass: 'error', // default input error message class        
-        rules: {
-            Exclusion: {
-                required: true,                    
-            }                  
-        },
-        // Specify the validation error messages
-        messages: {
-            Exclusion: {
-                required: exclusion               
-                }      
-        },
-        submitHandler: function(event) {
-             $("#building_exc").submit();
-         }
-    });
-
-});
-
-$('#last_reminder').datepicker({}); 
-$('#end_date').datepicker({
-    format: 'yyyy-mm-dd '+getHora(),
-});
-
-$('#date').datepicker({
-    format: 'yyyy-mm-dd',
-});
-
-function getHora() {
-    date = new Date();
-    return date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
-};

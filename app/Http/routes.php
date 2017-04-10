@@ -45,7 +45,7 @@ Route::get('category',[
         ]); 
  Route::get('order',[
           'as' => 'order',
-          'uses'  => 'HomeController@order'
+          'uses'  => 'ProductController@order'
         ]); 
   Route::get('faq',[
           'as' => 'faq',
@@ -128,16 +128,62 @@ Route::get('checkout',[
           'as' => 'register',
           'uses'  => 'UserController@register'
         ]);    
+
   Route::post('register',[
           'as' => 'register',
           'uses'  => 'UserController@signup'
         ]);   
 
+  Route::post('signup',[
+          'as' => 'signup',
+          'uses'  => 'UserController@signup'
+        ]); 
+
   Route::get('login',[
           'as' => 'login',
           'uses'  => 'UserController@showLoginForm'
         ]); 
+
+Route::post('billing',[
+          'as' => 'billing',
+          'uses'  => 'ProductController@billing'
+        ]);
+
+Route::post('shipping',[
+          'as' => 'shipping',
+          'uses'  => 'ProductController@shipping'
+        ]);
+
+Route::post('shippingMethod',[
+          'as' => 'shippingMethod',
+          'uses'  => 'ProductController@shippingMethod'
+        ]);
+
+Route::post('placeOrder',[
+          'as' => 'placeOrder',
+          'uses'  => 'ProductController@placeOrder'
+        ]);
+
+
+Route::get('orderSuccess',[
+          'as' => 'orderSuccess',
+          'uses'  => 'ProductController@thankYou'
+        ]); 
+
+
+Route::get('signout', function(App\User $user , Illuminate\Http\Request $request) { 
+    
+    $request->session()->forget('current_user');
+    $request->session()->flush();  
+
+    return redirect()->intended('/'); 
+
+});
+           
+
+
 Route::post('login',function(App\User $user , Illuminate\Http\Request $request){ 
+
       $credentials = ['email' => Input::get('email'), 'password' => Input::get('password')];  
        
           if (Auth::attempt($credentials)) {
@@ -153,7 +199,26 @@ Route::post('login',function(App\User $user , Illuminate\Http\Request $request){
       }); 
              
 
+
+
+Route::post('Ajaxlogin',function(App\User $user , Illuminate\Http\Request $request){ 
+       
+      $credentials = ['email' => Input::get('email'), 'password' => Input::get('password')];  
+       
+          if (Auth::attempt($credentials)) {
+             $request->session()->put('current_user',Auth::user());
+             $request->session()->put('tab',1);
+           
+              return Redirect::to(url()->previous());
+               // return  json_encode(['msg'=>'success','code'=>200,'data'=>Auth::user()]); 
+          }else{  
+               return  json_encode(['msg'=>'Invalid email or password','code'=>500,'data'=>$request->all()]); 
+              } 
+      }); 
+             
+
  });
+
 
 
 

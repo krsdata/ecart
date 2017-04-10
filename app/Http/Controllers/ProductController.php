@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Modules\Admin\Http\Requests\ProductRequest;
 use Modules\Admin\Models\User;
 use Modules\Admin\Models\Category;
-use Modules\Admin\Models\Product;
+use Modules\Admin\Models\Product; 
+use Modules\Admin\Models\ShippingBillingAddress;
+use Modules\Admin\Models\Transaction;
 use Input;
 use Validator;
 use Auth;
@@ -27,7 +29,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Dispatcher; 
 use App\Helpers\Helper;
 use Response;
-use Cart;
+use Cart; 
 
 /**
  * Class AdminController
@@ -41,12 +43,32 @@ class ProductController extends Controller {
      * Displays all admin.
      *
      * @return \Illuminate\View\View
+    
      */
+
+    private $user_id;
+
     public function __construct(Request $request) {
 
         View::share('category_name', $request->segment(1));
         View::share('total_item',Cart::content()->count());
         View::share('sub_total',Cart::subtotal()); 
+
+        View::share('userData',$request->session()->get('current_user'));
+         if ($request->session()->has('current_user')) { 
+            $this->user_id = $request->session()->get('current_user')->id;
+        }else{
+            $this->user_id = "";
+        }
+
+         if ($request->session()->has('tab')) { 
+          View::share('tab',$request->session()->get('tab'));
+       
+        }else{
+            View::share('tab',"0");
+       
+        }
+ 
     }
 
     protected $categories;
@@ -180,7 +202,7 @@ class ProductController extends Controller {
 
     public function showProduct(Request $request, Product $product)
     {   
-       
+
        $products = Product::with('category')->orderBy('id','desc')->get();
        $product_new = Product::with('category')->orderBy('id','desc')->Paginate(5);
        //dd($products ); 
@@ -237,4 +259,130 @@ class ProductController extends Controller {
         Cart::remove($rowId);
         return Redirect::to('checkout');
     }
+
+
+    public function order(Request $request)
+    { 
+        $cart = Cart::content();
+        $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        $billing    = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',1)->first(); 
+
+        $shipping   = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',2)->first(); 
+
+
+        return view('end-user.order',compact('categories','products','category','cart','billing','shipping'));   
+         
+    }
+
+
+    public function billing(ShippingBillingAddress $shipBill, Request $request)
+    {
+       
+        $bill =  ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',1)->first();
+
+        if($bill) 
+        {
+            $shipBill = ShippingBillingAddress::find($bill->id);
+        }
+        
+        $shipBill->name = $request->get('name');
+        $shipBill->email = $request->get('email');
+        $shipBill->mobile = $request->get('mobile');
+        $shipBill->address1 = $request->get('address1');
+        $shipBill->user_id = $this->user_id;
+        $shipBill->address_type = 1; 
+ 
+        $shipBill->save();
+        $request->session()->put('tab',2);
+        return Redirect::to('order');
+
+
+    }
+
+    public function shipping(ShippingBillingAddress $shipBill, Request $request)
+    {
+        $shipping = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',2)->first();
+
+        if($shipping) 
+        {
+            $shipBill = ShippingBillingAddress::find($shipping->id);
+        }
+        
+        $shipBill->name     = $request->get('name');
+        $shipBill->email    = $request->get('email');
+        $shipBill->mobile   = $request->get('mobile');
+        $shipBill->address1 = $request->get('address1');
+         $shipBill->address2 = $request->get('address2');
+        $shipBill->zip_code = $request->get('zip_code');
+        $shipBill->city     = $request->get('city');
+        $shipBill->state    = $request->get('state');
+        $shipBill->user_id  = $this->user_id;
+        $shipBill->address_type = 2; 
+ 
+        $shipBill->save();
+         $request->session()->put('tab',3);
+         return Redirect::to('order');
+        
+    }
+
+    public function shippingMethod(hippingBillingAddress $shipBill, Request $request)
+    {
+        
+
+        $shipping = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',2)->first();
+
+        if($shipping) 
+        {
+            $shipBill = ShippingBillingAddress::find($shipping->id);
+        }
+
+        $shipping->payment_mode = "COD";
+        $shipBill->user_id  = $this->user_id;
+        $shipBill->address_type = 2;
+        $shipBill->save();
+         $request->session()->put('tab',4);
+        return Redirect::to('order');
+        
+    }
+
+    public function placeOrder(Request $request)
+    {
+        
+    }
+
+    public function thankYou(Request $request)
+    {
+        
+        $cart       = Cart::content();
+        $products   = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+
+        $billing    = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',1)->first();
+        $shipping   = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',2)->first(); 
+        $user_id    = $this->user_id;
+
+
+        foreach ($cart as $key => $result) {
+
+            $transaction                = new Transaction;
+            $transaction->user_id       = $user_id;
+            $transaction->product_name  = $result->name;
+            $transaction->product_id    = $result->id;
+            $transaction->total_price   = $result->price;
+            $transaction->discount_price= $result->price;
+            $transaction->payment_mode  = "COD";
+            $transaction->product_details = json_encode(Product::where('id',$result->id)->get()->toArray());
+            $transaction->save();
+             
+        } 
+
+        $request->session()->forget('current_user');
+        $request->session()->flush(); 
+
+        return view('end-user.thanku',compact('categories','products','category','cart','billing','shipping'));
+
+    }
 }
+

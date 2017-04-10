@@ -49,14 +49,14 @@ class UserController extends Controller
 
     public function signup(Request $request,User $user)
     {   
-		$input['first_name'] 	= $request->input('name');
+		$input['first_name'] 	= $request->input('first_name');
     	$input['email'] 		= $request->input('email'); 
     	$input['password'] 	    = Hash::make($request->input('password'));
     	
 
         //Server side valiation
         $validator = Validator::make($request->all(), [
-           	'name'		=> 	'required',
+           	'first_name'		=> 	'required',
             'email'     =>  'required|email|unique:users',
 	        'password' => 'required|min:6',
 	        'confirm_password' => 'required|same:password'
@@ -67,7 +67,7 @@ class UserController extends Controller
 	        foreach ( $validator->messages()->messages() as $key => $value) {
 	        			  $error_msg[$key] = $value[0];
 	        		}
-	        		 		
+	      
           	return Response::json(array(
 	          	'status' => 0,
 	            'message' => $error_msg,
@@ -78,15 +78,27 @@ class UserController extends Controller
         /** --Create USER-- **/
         $user = User::create($input); 
        
-       
-        return response()->json(
+        if($user) 
+        {
+             $credentials = ['email' => Input::get('email'), 'password' => Input::get('password')];  
+        
+            if (Auth::attempt($credentials)) {
+                 $request->session()->put('current_user',Auth::user());
+                 $request->session()->put('tab',1);
+                    return response()->json(
                             [ 
                                 "status"=>1,
                                 "code" => 200,
                                 "message"=>"Thank you for registration.",
-                                'data'=>$request->except('password')
+                                'data'=>$user
                             ]
                         );
+              }  
+        }
+       
+
+
+      
     }
     
     public function register(Request $request)

@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<title>Shopre Square</title>
+<title>Shoper Square</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{{ asset('public/enduser/assets/css/bootstrap.min.css') }}">

@@ -11,7 +11,13 @@
             <li><a href="##">My Account</a></li>  
             <li><a href="{{ url('checkout') }}">My Cart</a></li>
             <li><a href="{{ url('checkout') }}">Checkout</a></li>
-            <li><a href="##">Login</a></li>
+            <li>
+                @if($userData==null)
+                  <a href="#">Login</a>
+                  @else
+                  <a href="{{url('signout')}}">Logout</a>
+                  @endif
+               </li>
           </ul>
         </div>
         <!-- /.cnt-account -->
