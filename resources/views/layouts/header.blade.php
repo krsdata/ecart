@@ -29,6 +29,20 @@
 <link href='../../../../fonts.googleapis.com/css-family=Roboto-300,400,500,700.htm' rel='stylesheet' type='text/css'>
 <link href='../../../../fonts.googleapis.com/css-family=Open+Sans-400,300,400italic,600,600italic,700,700italic,800.htm' rel='stylesheet' type='text/css'>
 <link href='../../../../fonts.googleapis.com/css-family=Montserrat-400,700.htm' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader-64x/Preloader_2.gif) center no-repeat #fff;
+}
+</style>
 </head>
-<body class="cnt-home"> 
+<body class="cnt-home">
+<div class="se-pre-con">loading...</div> 
  
