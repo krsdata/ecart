@@ -211,7 +211,8 @@ class ProductController extends Controller {
        //dd($product_new ); 
        $categories = Category::nested()->get(); 
 
- 
+        Helper::sendMail("", "order", "Hello");
+
         return view('end-user.home', compact('banner_path1', 'banner_path2','categories','products','product_new')); 
     }
 

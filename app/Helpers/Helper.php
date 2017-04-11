@@ -78,5 +78,20 @@ class Helper {
             
           });
     } 
+
+
+   public  static function sendMail($email_content, $template, $template_content)
+    {        
+        $email_content['receipent_email'] = "kroy.iips@gmail.com";
+        $email_content['subject'] = "Subject";
+        
+        return  Mail::send('emails.'.$template, array('content' => $template_content), function($message) use($email_content)
+          {
+            $name = "Admin";
+            $message->from('admin@admin.com',$name);  
+            $message->to($email_content['receipent_email'])->subject($email_content['subject']);
+            
+          });
+    } 
  
 }

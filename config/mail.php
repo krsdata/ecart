@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => 'smtp',
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => 'tls://smtp.gmail.com',
+   'host' =>env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'port' => 465,
+    'port' =>env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'admin@indianic.com', 'name' => 'Admin'],
+    'from' => ['address' => 'admin@admin.com', 'name' => 'Admin'], 
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'encryption' => '',
+   'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,9 +78,8 @@ return [
     | set it here. This will get used to authenticate with your server on
     | connection. You may also set the "password" value below this one.
     |
-    */
-
-    'username' => 'kundan.roy@indianic.com',
+    */ 
+    'username' =>env('MAIL_USERNAME','yourusername@mail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +92,7 @@ return [
     |
     */
 
-    'password' => 'godfather@1',
+    'password' =>env('MAIL_PASSWORD','youremailpassword'),
 
     /*
     |--------------------------------------------------------------------------
