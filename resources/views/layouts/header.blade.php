@@ -26,10 +26,10 @@
 <link rel="stylesheet" href="{{ asset('public/enduser/assets/css/font-awesome.css')}}">
 
 <!-- Fonts -->
-<link href='../../../../fonts.googleapis.com/css-family=Roboto-300,400,500,700.htm' rel='stylesheet' type='text/css'>
+<!-- <link href='../../../../fonts.googleapis.com/css-family=Roboto-300,400,500,700.htm' rel='stylesheet' type='text/css'>
 <link href='../../../../fonts.googleapis.com/css-family=Open+Sans-400,300,400italic,600,600italic,700,700italic,800.htm' rel='stylesheet' type='text/css'>
 <link href='../../../../fonts.googleapis.com/css-family=Montserrat-400,700.htm' rel='stylesheet' type='text/css'>
-<style type="text/css">
+ --><style type="text/css">
 	.no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
