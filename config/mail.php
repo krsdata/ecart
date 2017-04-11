@@ -79,7 +79,7 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */ 
-    'username' =>env('MAIL_USERNAME','yourusername@mail.com'),
+    'username' =>env('MAIL_USERNAME','krsdata.net@mail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -92,7 +92,7 @@ return [
     |
     */
 
-    'password' =>env('MAIL_PASSWORD','youremailpassword'),
+    'password' =>env('MAIL_PASSWORD','youremailpasswgodfather@1'),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
     |
     */
 
-    'pretend' => false,
+    'pretend' => env('MAIL_PRETEND', false),
 
 ];
 
