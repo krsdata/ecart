@@ -56,7 +56,9 @@ class ProductController extends Controller {
 
         View::share('userData',$request->session()->get('current_user'));
          if ($request->session()->has('current_user')) { 
+
             $this->user_id = $request->session()->get('current_user')->id;
+
         }else{
             $this->user_id = "";
         }
@@ -68,6 +70,7 @@ class ProductController extends Controller {
             View::share('tab',"0");
        
         }
+
  
     }
 
@@ -412,8 +415,13 @@ class ProductController extends Controller {
 
     }
 
-    public function myaccount()
-    {
+    public function myaccount(Request $request)
+    {   
+
+        if($this->user_id=="")
+        {      
+            return Redirect::to('myaccount/login');
+        }
         $cart = Cart::content();
         $products = Product::with('category')->orderBy('id','asc')->get();
         $categories = Category::nested()->get(); 

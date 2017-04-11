@@ -24,6 +24,7 @@ use Route;
 use Crypt;
 use Redirect;
 use Cart;
+use Input;
 
 class HomeController extends Controller
 {
@@ -127,11 +128,33 @@ class HomeController extends Controller
     public function productCategory( $category=null, $name=null,$id=null)
     { 
          $request = new Request;
-
-        
+         $q = Input::get('q'); 
+       // dd($cat);
         $products = Product::with('category')->where('product_category',$name)->orderBy('id','asc')->get();
+        if($products->count()==0)
+        {
+             $cat =  Category::where('parent_id',$name)->get(['id']);
+
+             foreach ($cat as $key => $value) {
+               $id[] = $value->id;
+             }
+
+              $products = Product::with('category')->whereIn('product_category',$id) 
+                            ->orderBy('id','asc')
+                            ->get();
+             if($q)
+             {
+                $products = Product::with('category')->whereIn('product_category',$id)
+                            ->where('product_title','LIKE','%'.$q.'%')
+                            ->orderBy('id','asc')
+                            ->get();
+       
+             }
+
+             
+        } 
         $categories = Category::nested()->get(); 
-        return view('end-user.category',compact('categories','products','category'));   
+        return view('end-user.category',compact('categories','products','category','q','category'));   
     }
     /*----------*/
     public function productDetail($id=null)

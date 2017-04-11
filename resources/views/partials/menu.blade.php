@@ -47,10 +47,11 @@
           <!-- /.contact-row --> 
           <!-- ============================================================= SEARCH AREA ============================================================= -->
           <div class="search-area">
-            <form>
+            <form >
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
-                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
+                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">
+                  {{ $category or 'Categories' }} <b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" > 
                         @foreach($categories as $key => $value)
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('product-category/'.$value['name'].'/'.$value['slug'].'/'.$value['id']) }}">- {{$value['name']}}</a></li>
@@ -59,8 +60,8 @@
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Search here..." />
-                <a class="search-button" href="##" ></a> </div>
+                <input class="search-field" name="q" value="{{ $q or ''}}" placeholder="Search here..." />
+               <button type="submit" class="search-button"></button> </div>
             </form>
           </div>
           <!-- /.search-area --> 

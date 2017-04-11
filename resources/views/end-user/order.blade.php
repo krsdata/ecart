@@ -238,7 +238,7 @@
                                             <div class="form-group">
                                                 <label class="info-title" for="state"> State
                                                 <span>*</span></label>
-                                                <input class="form-control unicase-form-control text-input" id="state" placeholder="state" value="{{$shipping->state or ''}}" name="state" type="password"> 
+                                                <input class="form-control unicase-form-control text-input" id="state" placeholder="state" value="{{$shipping->state or ''}}" name="state" type="text"> 
                                             </div>
 
 
