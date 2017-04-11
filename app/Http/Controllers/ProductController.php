@@ -208,27 +208,9 @@ class ProductController extends Controller {
 
        $products = Product::with('category')->orderBy('id','desc')->get();
        $product_new = Product::with('category')->orderBy('id','desc')->Paginate(5);
-       //dd($products ); 
+       //dd($product_new ); 
        $categories = Category::nested()->get(); 
 
-      // $categories = Category::with('parent','children')->where('parent_id',0)->get();
-
-     /* $s = $categories[2]->children; 
-      $ss = $s[1]->children; 
-        foreach($categories as $category){
-            echo  $category->name.'<br>';
-
-                if(count($category->children)){
-                   dd($category->children);
-                } 
-
-        }
-          */                   
-
-
-
-       $banner_path1   = asset('public/enduser/assets/images/sliders/01.jpg');
-       $banner_path2   = asset('public/enduser/assets/images/sliders/02.jpg');
  
         return view('end-user.home', compact('banner_path1', 'banner_path2','categories','products','product_new')); 
     }
