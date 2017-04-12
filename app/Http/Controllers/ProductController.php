@@ -211,7 +211,8 @@ class ProductController extends Controller {
     public function showProduct(Request $request, Product $product)
     {   
 
-        $products       = Product::with('category')->orderBy('id','desc')->get();
+        $products       = Product::with('category')->orderBy('views','desc')->get();
+       
         $product_new    = Product::with('category')->orderBy('id','desc')->Paginate(5); 
 
         $categories     = Category::nested()->get();  
