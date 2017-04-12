@@ -41,6 +41,14 @@ class HomeController extends Controller
         View::share('total_item',Cart::content()->count());
         View::share('sub_total',Cart::subtotal()); 
         View::share('userData',$request->session()->get('current_user'));
+
+        $hot_products   = Product::orderBy('views','desc')->limit(3)->get();
+        $special_deals  = Product::orderBy('discount','desc')->limit(3)->get(); 
+        View::share('hot_products',$hot_products);
+        View::share('special_deals',$special_deals);  
+ 
+      // dd(Route::currentRouteName());
+
     }
 
     /**
@@ -162,13 +170,18 @@ class HomeController extends Controller
         
         $product = Product::with('category')->where('id',$id)->first();
         $categories = Category::nested()->get(); 
+
+
         
         if($product==null)
         {
              $url =  URL::previous().'?error=InvaliAcess'; 
               return Redirect::to($url);
+        }else{
+          $product->views=$product->views+1;
+          $product->save(); 
         }
-
+         
         return view('end-user.product-details',compact('categories','product')); 
     }
      /*----------*/

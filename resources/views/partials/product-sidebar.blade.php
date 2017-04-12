@@ -80,7 +80,8 @@
       <!-- /.sidebar-widget-body --> 
     </div>
     
-    <div class="home-banner"> <img src="{{ asset('public/enduser/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
+    <div class="home-banner"> 
+    <img src="{{ asset('public/enduser/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
   </div>
   <!-- /.sidebar-filter --> 
     </div>

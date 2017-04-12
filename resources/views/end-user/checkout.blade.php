@@ -6,6 +6,7 @@
         @stop
         @section('content') 
             @include('partials.menu')
+              @include('partials.breadcrumb')
             <!-- Left side column. contains the logo and sidebar -->
             <div class="">
                 <div class="shopping-cart">

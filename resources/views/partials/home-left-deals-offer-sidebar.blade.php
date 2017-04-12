@@ -5,138 +5,47 @@
     <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
       <h3 class="section-title">hot deals</h3>
       <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
+       
+       @foreach($hot_products as $result)
         <div class="item">
           <div class="products">
             <div class="hot-deal-wrapper">
-              <div class="image"> <img src="{{ asset('public/enduser/assets/images/hot-deals/p1.jpg') }}" alt=""> </div>
-              <div class="sale-offer-tag"><span>49%<br>
-                off</span></div>
-              <div class="timing-wrapper">
-                <div class="box-wrapper">
-                  <div class="date box"> <span class="key">120</span> <span class="value">DAYS</span> </div>
-                </div>
-                <div class="box-wrapper">
-                  <div class="hour box"> <span class="key">20</span> <span class="value">HRS</span> </div>
-                </div>
-                <div class="box-wrapper">
-                  <div class="minutes box"> <span class="key">36</span> <span class="value">MINS</span> </div>
-                </div>
-                <div class="box-wrapper hidden-md">
-                  <div class="seconds box"> <span class="key">60</span> <span class="value">SEC</span> </div>
-                </div>
-              </div>
+              <div class="image"> <img style="height: 200px;" src="{{ asset('storage/uploads/products/'. $result->photo) }}" alt=""> </div>
+              <div class="sale-offer-tag"><span>10%<br>
+                off</span></div> 
             </div>
             <!-- /.hot-deal-wrapper -->
             
-            <div class="product-info text-left m-t-20">
-              <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-              <div class="rating rateit-small"></div>
-              <div class="product-price"> <span class="price"> RS600.00 </span> <span class="price-before-discount">RS800.00</span> </div>
-              <!-- /.product-price --> 
-              
-            </div>
+             <div class="product-info text-left m-t-20">
+                <h3 class="name"><a href="detail.html">{{ $result->product_title }}</a> ({{ $result->views+100 }} views) </h3>
+                <div class="rating rateit-small"></div>
+                <div class="product-price"> 
+                <span class="price"> INR  {{ $result->price - ($result->price*$result->discount)/100 }} </span> 
+                <span class="price-before-discount">INR {{ $result->price }}</span> 
+                </div>
+                <!-- /.product-price --> 
+                
+              </div>
             <!-- /.product-info -->
             
             <div class="cart clearfix animate-effect">
               <div class="action">
-                <div class="add-cart-button btn-group">
-                  <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                  <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                <a href="{{ url('addToCart/'.$result->id) }}" id="addToCart" > 
+                  <div class="add-cart-button btn-group">
+                     <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                    <button class="btn btn-primary cart-btn" type="button"> 
+                       Add to cart
+                    </button>  
                 </div>
+                </a>
               </div>
               <!-- /.action --> 
             </div>
             <!-- /.cart --> 
           </div>
         </div>
-        <div class="item">
-          <div class="products">
-            <div class="hot-deal-wrapper">
-              <div class="image"> <img src="{{ asset('public/enduser/assets/images/hot-deals/p5.jpg') }}" alt=""> </div>
-              <div class="sale-offer-tag"><span>35%<br>
-                off</span></div>
-              <div class="timing-wrapper">
-                <div class="box-wrapper">
-                  <div class="date box"> <span class="key">120</span> <span class="value">Days</span> </div>
-                </div>
-                <div class="box-wrapper">
-                  <div class="hour box"> <span class="key">20</span> <span class="value">HRS</span> </div>
-                </div>
-                <div class="box-wrapper">
-                  <div class="minutes box"> <span class="key">36</span> <span class="value">MINS</span> </div>
-                </div>
-                <div class="box-wrapper hidden-md">
-                  <div class="seconds box"> <span class="key">60</span> <span class="value">SEC</span> </div>
-                </div>
-              </div>
-            </div>
-            <!-- /.hot-deal-wrapper -->
-            
-            <div class="product-info text-left m-t-20">
-              <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-              <div class="rating rateit-small"></div>
-              <div class="product-price"> <span class="price"> RS600.00 </span> <span class="price-before-discount">RS800.00</span> </div>
-              <!-- /.product-price --> 
-              
-            </div>
-            <!-- /.product-info -->
-            
-            <div class="cart clearfix animate-effect">
-              <div class="action">
-                <div class="add-cart-button btn-group">
-                  <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                  <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                </div>
-              </div>
-              <!-- /.action --> 
-            </div>
-            <!-- /.cart --> 
-          </div>
-        </div>
-        <div class="item">
-          <div class="products">
-            <div class="hot-deal-wrapper">
-              <div class="image"> <img src="{{ asset('public/enduser/assets/images/hot-deals/p10.jpg') }}" alt=""> </div>
-              <div class="sale-offer-tag"><span>35%<br>
-                off</span></div>
-              <div class="timing-wrapper">
-                <div class="box-wrapper">
-                  <div class="date box"> <span class="key">120</span> <span class="value">Days</span> </div>
-                </div>
-                <div class="box-wrapper">
-                  <div class="hour box"> <span class="key">20</span> <span class="value">HRS</span> </div>
-                </div>
-                <div class="box-wrapper">
-                  <div class="minutes box"> <span class="key">36</span> <span class="value">MINS</span> </div>
-                </div>
-                <div class="box-wrapper hidden-md">
-                  <div class="seconds box"> <span class="key">60</span> <span class="value">SEC</span> </div>
-                </div>
-              </div>
-            </div>
-            <!-- /.hot-deal-wrapper -->
-            
-            <div class="product-info text-left m-t-20">
-              <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-              <div class="rating rateit-small"></div>
-              <div class="product-price"> <span class="price"> RS600.00 </span> <span class="price-before-discount">RS800.00</span> </div>
-              <!-- /.product-price --> 
-              
-            </div>
-            <!-- /.product-info -->
-            
-            <div class="cart clearfix animate-effect">
-              <div class="action">
-                <div class="add-cart-button btn-group">
-                  <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                  <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                </div>
-              </div>
-              <!-- /.action --> 
-            </div>
-            <!-- /.cart --> 
-          </div>
-        </div>
+        @endforeach
+         
       </div>
       <!-- /.sidebar-widget --> 
     </div>
@@ -148,269 +57,41 @@
       <h3 class="section-title">Special Offer</h3>
       <div class="sidebar-widget-body outer-top-xs">
         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
-          <div class="item">
-            <div class="products special-product">
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p30.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
+          @foreach($special_deals as $deal)
+           <div class="item">
+              <div class="products special-product">
+                <div class="product">
+                  <div class="product-micro">
+                    <div class="row product-micro-row">
+                      <div class="col col-xs-5">
+                        <div class="product-image">
+                          <div class="image"> <a href="{{ url('addToCart/'.$deal->id) }}"> <img src="{{ asset('storage/uploads/products/'. $deal->photo) }}" alt=""> </a> </div>
+                          <!-- /.image --> 
+                          
+                        </div>
+                        <!-- /.product-image --> 
                       </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
+                      <!-- /.col -->
+                      <div class="col col-xs-7">
+                        <div class="product-info">
+                          <h3 class="name"><a href="{{ url('addToCart/'.$deal->id) }}">{{ $deal->product_title}}</a></h3>
+                          <div class="rating rateit-small"></div>
+                          <div class="product-price"> <span class="price"> INR {{$deal->price}}</span> </div>
+                          <!-- /.product-price --> 
+                          
+                        </div>
                       </div>
+                      <!-- /.col --> 
                     </div>
-                    <!-- /.col --> 
+                    <!-- /.product-micro-row --> 
                   </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
+                  <!-- /.product-micro --> 
+                  
+                </div> 
               </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p29.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p28.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="products special-product">
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p27.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p26.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p25.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="products special-product">
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p24.jpg') }}"  alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p23.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p22.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-            </div>
-          </div>
+          </div> 
+          @endforeach
+
         </div>
       </div>
       <!-- /.sidebar-widget-body --> 
@@ -425,273 +106,42 @@
       <h3 class="section-title">Special Deals</h3>
       <div class="sidebar-widget-body outer-top-xs">
         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
-          <div class="item">
-            <div class="products special-product">
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p28.jpg') }}"  alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
+          @foreach($hot_products as $deal)
+            <div class="item">
+              <div class="products special-product">
+                <div class="product">
+                  <div class="product-micro">
+                    <div class="row product-micro-row">
+                      <div class="col col-xs-5">
+                        <div class="product-image">
+                          <div class="image"> <a href="{{ url('addToCart/'.$deal->id) }}"> <img src="{{ asset('storage/uploads/products/'. $deal->photo) }}"  alt="{{ $deal->product_title}}"> </a> </div> 
+                          <!-- /.image --> 
+                          
+                        </div>
+                        <!-- /.product-image --> 
                       </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
+                      <!-- /.col -->
+                      <div class="col col-xs-7">
+                        <div class="product-info">
+                          <h3 class="name"><a href="{{ url('addToCart/'.$deal->id) }}">{{ $deal->product_title}}</a></h3>
+                          <div class="rating rateit-small"></div>
+                          <div class="product-price"> <span class="price"> INR {{ $deal->product_title}}</span> </div>
+                          <!-- /.product-price --> 
+                          
+                        </div>
                       </div>
+                      <!-- /.col --> 
                     </div>
-                    <!-- /.col --> 
+                    <!-- /.product-micro-row --> 
                   </div>
-                  <!-- /.product-micro-row --> 
+                  <!-- /.product-micro --> 
+                  
                 </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p15.jpg') }}"  alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p26.jpg') }}"  alt="image"> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
                 
               </div>
             </div>
-          </div>
-          <div class="item">
-            <div class="products special-product">
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p18.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p17.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p16.jpg') }}" alt=""> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="products special-product">
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p15.jpg') }}" alt="images">
-                          <div class="zoom-overlay"></div>
-                          </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p14.jpg') }}"  alt="">
-                          <div class="zoom-overlay"></div>
-                          </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-              <div class="product">
-                <div class="product-micro">
-                  <div class="row product-micro-row">
-                    <div class="col col-xs-5">
-                      <div class="product-image">
-                        <div class="image"> <a href="##"> <img src="{{ asset('public/enduser/assets/images/products/p13.jpg') }}" alt="image"> </a> </div>
-                        <!-- /.image --> 
-                        
-                      </div>
-                      <!-- /.product-image --> 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col col-xs-7">
-                      <div class="product-info">
-                        <h3 class="name"><a href="##">Floral Print Shirt</a></h3>
-                        <div class="rating rateit-small"></div>
-                        <div class="product-price"> <span class="price"> RS450.99 </span> </div>
-                        <!-- /.product-price --> 
-                        
-                      </div>
-                    </div>
-                    <!-- /.col --> 
-                  </div>
-                  <!-- /.product-micro-row --> 
-                </div>
-                <!-- /.product-micro --> 
-                
-              </div>
-            </div>
-          </div>
+          @endforeach
+          
         </div>
       </div>
       <!-- /.sidebar-widget-body --> 

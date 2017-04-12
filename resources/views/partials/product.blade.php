@@ -84,7 +84,7 @@
                           <div class="image"> 
                           <a href="product-details">
 
-                          <img  style="float: left;height: 300px;border: 1px solid #ccc;" src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt="{{ $product->product_title }}"> 
+                          <img  style="float: left;height: 200px;border: 1px solid #ccc;" src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt="{{ $product->product_title }}"> 
 
                           </a> </div>
                           <!-- /.image -->
@@ -203,25 +203,12 @@
               <!-- /.category-product --> 
             </div>
             <!-- /.tab-pane #list-container --> 
-          </div>
-          <!-- /.tab-content -->
-         <!--  <div class="clearfix filters-container">
-            <div class="text-right">
-              <div class="pagination-container">
-                <ul class="list-inline list-unstyled">
-                  <li class="prev"><a href="index.htm#"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="index.htm#">1</a></li>
-                  <li class="active"><a href="index.htm#">2</a></li>
-                  <li><a href="index.htm#">3</a></li>
-                  <li><a href="index.htm#">4</a></li>
-                  <li class="next"><a href="index.htm#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-                <!-- /.list-inline --> 
+          </div> 
               </div>
               <!-- /.pagination-container --> </div>
             <!-- /.text-right --> 
             
-          </div> -->
+          </div>
           <!-- /.filters-container --> 
           
         </div>

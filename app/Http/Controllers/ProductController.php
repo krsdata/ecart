@@ -71,6 +71,11 @@ class ProductController extends Controller {
        
         }
 
+        $hot_products   = Product::orderBy('views','desc')->limit(3)->get();
+        $special_deals  = Product::orderBy('discount','desc')->limit(3)->get(); 
+        View::share('hot_products',$hot_products);
+        View::share('special_deals',$special_deals);  
+      //  dd(Route::currentRouteName());
  
     }
 
@@ -206,14 +211,13 @@ class ProductController extends Controller {
     public function showProduct(Request $request, Product $product)
     {   
 
-       $products = Product::with('category')->orderBy('id','desc')->get();
-       $product_new = Product::with('category')->orderBy('id','desc')->Paginate(5);
-       //dd($product_new ); 
-       $categories = Category::nested()->get(); 
+        $products       = Product::with('category')->orderBy('id','desc')->get();
+        $product_new    = Product::with('category')->orderBy('id','desc')->Paginate(5); 
 
-      //  Helper::sendMail("", "order", "Hello");
-
-        return view('end-user.home', compact('banner_path1', 'banner_path2','categories','products','product_new')); 
+        $categories     = Category::nested()->get();  
+      
+ 
+        return view('end-user.home', compact('special_deals','hot_products','banner_path1', 'banner_path2','categories','products','product_new')); 
     }
 
     public function getProduct(Request $request, Product $product)

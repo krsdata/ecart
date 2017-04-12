@@ -12,10 +12,8 @@
             @include('partials.breadcrumb')
          
             <div class="row">
-               @include('partials.product-sidebar')
-              <!-- /.sidebar -->
-                @include('partials.product')
-            <!-- /.row --> 
-            <!-- BRANDS CAROUSEL  --> 
+               @include('partials.product-sidebar') 
+               
+                @include('partials.product') 
             </div> 
     @stop

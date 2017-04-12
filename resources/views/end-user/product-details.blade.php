@@ -8,6 +8,8 @@
         @section('content') 
             <div class="row single-product">
                 @include('partials.menu')
+                 @include('partials.breadcrumb')
+         
                 @include('partials.product_detail_sidebar')
                 @include('partials.product_details')
             </div>
