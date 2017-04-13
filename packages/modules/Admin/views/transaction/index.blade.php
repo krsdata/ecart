@@ -55,14 +55,17 @@
                                                       </td>
                                                     </tr>
                                                   @endif
+                                              </thead>
                                                 @foreach ($transaction as $key => $result)  
-                                             <thead>
+                                             
+                                            
                                               <tbody>    
+                                               @if(isset($result->user->email))
                                                 <tr>
                                                     <td>{{ ++$key }}</td> 
-                                                    <td>{{ $result->user->first_name.' '.$result->user->last_name }}</td>
-                                                    <td>{{ $result->user->email }} </td>
-                                                    <td>{{ $result->product->product_title }} </td>
+                                                    <td>{{ $result->user->first_name }} </td>
+                                                <td>{{ $result->user->email }} </td>
+                                                    <td>{{ isset($result->product->product_title)?$result->product->product_title:'' }} </td>
                                                      <td>{{ $result->total_price }} </td>
                                                        <td>{{ $result->payment_mode }} </td> 
                                                    
@@ -70,7 +73,7 @@
                                                         {!! Carbon\Carbon::parse($result->created_at)->format('d-M-Y'); !!}
                                                     </td>
                                                     <td>
-                                                        <span class="label label-{{ ($result->status==1)?'success':'warning'}} status" id="{{$result->id}}"  data="{{$result->status}}"  onclick="changeStatus({{$result->id}},'transaction')" >
+                                                        <span class="label label-{{ ($result->status==1)?'success':'warning'}} status" id="{{$result->id}}"  data="{{$result->status}}"  >
                                                              @if($result->status==1)
                                                              Pending
                                                              @elseif($result->status==2)
@@ -79,6 +82,8 @@
                                                              Success
                                                              @elseif($result->status==4)
                                                              Cancel
+                                                             @else
+                                                             COD
                                                              @endif
                                                         </span>
                                                     </td>
@@ -91,6 +96,7 @@
 
                                                     </td> -->
                                                 </tr>
+                                                @endif
                                                 @endforeach 
                                             </tbody></table>
                                     </div><!-- /.box-body --> 

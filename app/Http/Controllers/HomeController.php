@@ -25,6 +25,7 @@ use Crypt;
 use Redirect;
 use Cart;
 use Input;
+use App\Helpers\Helper as Helper;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,7 @@ class HomeController extends Controller
         $special_deals  = Product::orderBy('discount','desc')->limit(3)->get(); 
         View::share('hot_products',$hot_products);
         View::share('special_deals',$special_deals);  
+ 
  
       // dd(Route::currentRouteName());
 

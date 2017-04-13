@@ -30,6 +30,7 @@ use Illuminate\Http\Dispatcher;
 use App\Helpers\Helper;
 use Response;
 use Cart; 
+use PDF;
 
 /**
  * Class AdminController
@@ -52,7 +53,7 @@ class ProductController extends Controller {
 
         View::share('category_name', $request->segment(1));
         View::share('total_item',Cart::content()->count());
-        View::share('sub_total',Cart::subtotal()); 
+        View::share('sub_total',Cart::subtotal());  
 
         View::share('userData',$request->session()->get('current_user'));
          if ($request->session()->has('current_user')) { 
@@ -209,8 +210,7 @@ class ProductController extends Controller {
     }
 
     public function showProduct(Request $request, Product $product)
-    {   
-
+    {    
         $products       = Product::with('category')->orderBy('views','desc')->get();
        
         $product_new    = Product::with('category')->orderBy('id','desc')->Paginate(5); 
@@ -287,6 +287,7 @@ class ProductController extends Controller {
  
         $shipBill->save();
         $request->session()->put('tab',2);
+        $request->session()->put('billing',$shipBill);
         return Redirect::to('order');
 
 
@@ -305,15 +306,15 @@ class ProductController extends Controller {
         $shipBill->email    = $request->get('email');
         $shipBill->mobile   = $request->get('mobile');
         $shipBill->address1 = $request->get('address1');
-         $shipBill->address2 = $request->get('address2');
+        $shipBill->address2 = $request->get('address2');
         $shipBill->zip_code = $request->get('zip_code');
         $shipBill->city     = $request->get('city');
         $shipBill->state    = $request->get('state');
         $shipBill->user_id  = $this->user_id;
-        $shipBill->address_type = 2; 
- 
+        $shipBill->address_type = 2;  
         $shipBill->save();
-         $request->session()->put('tab',3);
+        $request->session()->put('shipping',$shipBill);
+        $request->session()->put('tab',3);
          return Redirect::to('order');
         
     }
@@ -345,12 +346,18 @@ class ProductController extends Controller {
 
     public function thankYou(Request $request)
     {
-        
+        $user_id    = $this->user_id;
         $cart       = Cart::content();
+
+       
 
         if($cart->count()==0)
         {
            return  Redirect::to('checkout');
+        }
+        if($user_id=="")
+        {
+           return  Redirect::to('order');
         }
 
         $products   = Product::with('category')->orderBy('id','asc')->get();
@@ -358,8 +365,6 @@ class ProductController extends Controller {
 
         $billing    = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',1)->first();
         $shipping   = ShippingBillingAddress::where('user_id',$this->user_id)->where('address_type',2)->first(); 
-        $user_id    = $this->user_id;
-
 
         foreach ($cart as $key => $result) {
 
@@ -370,11 +375,26 @@ class ProductController extends Controller {
             $transaction->total_price   = $result->price;
             $transaction->discount_price= $result->price;
             $transaction->payment_mode  = "COD";
+            $transaction->transaction_id = strtotime("now");
             $transaction->product_details = json_encode(Product::where('id',$result->id)->get()->toArray());
             $transaction->save();
              
         } 
         $cart = Cart::content(); 
+       // dd(Cart::subtotal());
+        if($cart){
+
+            $email_content['receipent_email'] = $billing->email;
+            $email_content['subject'] = "Invoice";
+            $template = "invoice";
+            $template_content = ['cart'=>$cart ,'billing' => $billing , 'shipping' => $shipping,'transaction'=>$transaction];
+
+            $data = $template_content; 
+         
+            Helper::sendMail($email_content, $template, $template_content);
+        } 
+
+
         foreach ($cart as $key => $value) {
              Cart::remove($key);
         }
