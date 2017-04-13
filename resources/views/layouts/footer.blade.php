@@ -73,7 +73,7 @@
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inveRSe"></i> </span> </div>
-                <div class="media-body"> <span><a href="##">info@shpersquare.com</a></span> </div>
+                <div class="media-body"> <span><a href="##">info@shopersquare.com</a></span> </div>
               </li>
             </ul>
           </div>

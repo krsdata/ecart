@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<title>Shoper Square</title>
+<title>ShoperSquare: India largest ecommerce company</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{{ asset('public/enduser/assets/css/bootstrap.min.css') }}">
