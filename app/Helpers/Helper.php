@@ -99,34 +99,45 @@ class Helper {
 
     public static function sendEmail()
     {
-          $mail = new PHPMailer;
+        $mail = new PHPMailer;
+        
+        try {
+            $mail->isSMTP(); // tell to use smtp
+            $mail->CharSet = "utf-8"; // set charset to utf8
+             
 
-            //Send mail using gmail
-            $mail->IsSMTP(); // telling the class to use SMTP
-            $mail->SMTPAuth = true; // enable SMTP authentication
-            $mail->SMTPSecure = 'ssl'; // sets the prefix to the servier
-            $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
-            $mail->Port = 465; // set the SMTP port for the GMAIL server
-            $mail->Username = "kroy.iips@gmail.com"; // GMAIL username
-            $mail->Password = "kandy@123!@"; // GMAIL password
-           
-            $email = "kroy.iips@gmail.com";
-            $name = "shopersquare";
+            $mail->SMTPAuth   = true;                  // enable SMTP authentication
+            $mail->Host       = "mail.shopersquare.com"; // sets the SMTP server
+            $mail->Port       = 587;   
+            $mail->SMTPSecure = 'false';                 // set the SMTP port for the GMAIL server
+            $mail->Username   = "admin@shopersquare.com"; // SMTP account username
+            $mail->Password   = "admin@123!"; 
 
+            $mail->setFrom("admin@shopersquare.com", "shopersquare.com");
+            $mail->Subject = "local";
+            $mail->MsgHTML("This is local testing mail");
+            $mail->addAddress("kroy@mailinator.com", "admin");
+            $mail->addAddress("kroy.iips@gmail.com","kundan roy"); 
+            //$mail->addReplyTo(‘examle@examle.net’, ‘Information’);
+            //$mail->addBCC(‘examle@examle.net’);
+            //$mail->addAttachment(‘/home/kundan/Desktop/abc.doc’, ‘abc.doc’); // Optional name
+            $mail->SMTPOptions= array(
+            'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+            )
+            );
 
-            //Typical mail data
-            $mail->AddAddress($email, $name);
-            $mail->SetFrom('info@shopersquare.com', $name);
-            $mail->Subject = "My Subject";
-            $mail->Body = "Mail contents";
-
-            try{
-                $mail->Send();
-                echo "Success!";
-            } catch(Exception $e){
-                //Something went bad
-                echo "Fail - " . $mail->ErrorInfo;
+            $mail->send();
+            echo "success";
+            } catch (phpmailerException $e) {
+             
+            } catch (Exception $e) {
+             
             }
-
-   }
+         
+       
+    }
+ 
 }
