@@ -134,7 +134,7 @@ class Helper {
             );
 
             $mail->send();
-            echo "success";
+            //echo "success";
             } catch (phpmailerException $e) {
              
             } catch (Exception $e) {
