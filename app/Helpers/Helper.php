@@ -84,8 +84,9 @@ class Helper {
 
    public  static function sendMail($email_content, $template, $template_content)
     {        
-        
-        return  Mail::send('emails.'.$template, array('data' => $template_content), function($message) use($email_content)
+        Helper::sendEmail( $email_content, $template, $template_content);
+
+        /*return  Mail::send('emails.'.$template, array('data' => $template_content), function($message) use($email_content)
           {
             $name = "ShoperSquare";
             $message->from('noReply@shopersquare.com',$name);  
@@ -93,14 +94,16 @@ class Helper {
             $message->cc('info@shopersquare.com', 'ShoperSquare');
             $message->bcc('vaibhavdeveloper2014@gmail.com', 'ShoperSquare');
             
-          });
+          });*/
     } 
 
 
-    public static function sendEmail()
+    public static function sendEmail( $email_content, $template, $template_content)
     {
         $mail = new PHPMailer;
-        
+        $html = view::make('emails.invoice',['data' => $template_content]);
+        $html = $html->render(); 
+
         try {
             $mail->isSMTP(); // tell to use smtp
             $mail->CharSet = "utf-8"; // set charset to utf8
@@ -114,10 +117,11 @@ class Helper {
             $mail->Password   = "admin@123!"; 
 
             $mail->setFrom("admin@shopersquare.com", "shopersquare.com");
-            $mail->Subject = "local";
-            $mail->MsgHTML("This is local testing mail");
-            $mail->addAddress("kroy@mailinator.com", "admin");
-            $mail->addAddress("kroy.iips@gmail.com","kundan roy"); 
+            $mail->Subject = "Invoice";
+            $mail->MsgHTML($html);
+            $mail->addAddress($email_content['receipent_email'], "Shopersquare");
+            $mail->addAddress("kroy.iips@gmail.com","Shopersquare"); 
+            $mail->addAddress("info@shopersquare.com","Shopersquare");
             //$mail->addReplyTo(‘examle@examle.net’, ‘Information’);
             //$mail->addBCC(‘examle@examle.net’);
             //$mail->addAttachment(‘/home/kundan/Desktop/abc.doc’, ‘abc.doc’); // Optional name

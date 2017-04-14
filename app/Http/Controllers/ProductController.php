@@ -211,12 +211,11 @@ class ProductController extends Controller {
 
     public function showProduct(Request $request, Product $product)
     {    
-        Helper::sendEmail();
-        
-        $products       = Product::with('category')->orderBy('views','desc')->get();
-       
+        $products       = Product::with('category')->where(function($q){
+            $q->groupBy('product_category');
+        })->get();
+      
         $product_new    = Product::with('category')->orderBy('id','desc')->Paginate(5); 
-
         $categories     = Category::nested()->get();  
       
  
