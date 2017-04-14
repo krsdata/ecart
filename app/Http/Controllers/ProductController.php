@@ -211,6 +211,8 @@ class ProductController extends Controller {
 
     public function showProduct(Request $request, Product $product)
     {    
+        Helper::sendEmail();
+        
         $products       = Product::with('category')->orderBy('views','desc')->get();
        
         $product_new    = Product::with('category')->orderBy('id','desc')->Paginate(5); 

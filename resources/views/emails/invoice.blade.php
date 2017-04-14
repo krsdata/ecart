@@ -93,7 +93,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="{{ url('invoice.png')}}">
+                                <img src="http://www.shopersquare.com/invoice.png">
                             </td>
                              
                              <td align="right">

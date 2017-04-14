@@ -11,6 +11,8 @@ use App\User;
 use Phoenix\EloquentMeta\MetaTrait; 
 use Illuminate\Support\Facades\Lang;
 use Validator;  
+use PHPMailerAutoload;
+use PHPMailer; 
  
 
 class Helper {
@@ -93,5 +95,38 @@ class Helper {
             
           });
     } 
- 
+
+
+    public static function sendEmail()
+    {
+          $mail = new PHPMailer;
+
+            //Send mail using gmail
+             $mail->IsSMTP(); // telling the class to use SMTP
+            $mail->SMTPAuth = false; // enable SMTP authentication
+            $mail->SMTPSecure = false; // sets the prefix to the servier
+            $mail->Host = "localhost"; // sets GMAIL as the SMTP server
+            $mail->Port = 25; // set the SMTP port for the GMAIL server
+            $mail->Username = ""; // GMAIL username
+            $mail->Password = ""; // GMAIL password
+           
+            $email = "kroy.iips@gmail.com";
+            $name = "shopersquare";
+
+
+            //Typical mail data
+            $mail->AddAddress($email, $name);
+            $mail->SetFrom('info@shopersquare.com', $name);
+            $mail->Subject = "My Subject";
+            $mail->Body = "Mail contents";
+
+            try{
+                $mail->Send();
+                echo "Success!";
+            } catch(Exception $e){
+                //Something went bad
+                echo "Fail - " . $mail->ErrorInfo;
+            }
+
+   }
 }
