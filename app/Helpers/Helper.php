@@ -104,9 +104,9 @@ class Helper {
             //Send mail using gmail
             $mail->IsSMTP(); // telling the class to use SMTP
             $mail->SMTPAuth = true; // enable SMTP authentication
-            $mail->SMTPSecure = 'tls'; // sets the prefix to the servier
+            $mail->SMTPSecure = 'ssl'; // sets the prefix to the servier
             $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
-            $mail->Port = 587; // set the SMTP port for the GMAIL server
+            $mail->Port = 465; // set the SMTP port for the GMAIL server
             $mail->Username = "kroy.iips@gmail.com"; // GMAIL username
             $mail->Password = "kandy@123!@"; // GMAIL password
            
