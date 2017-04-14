@@ -392,8 +392,8 @@ class ProductController extends Controller {
             $template_content = ['cart'=>$cart ,'billing' => $billing , 'shipping' => $shipping,'transaction'=>$transaction];
 
             $data = $template_content; 
-         
-            Helper::sendMail($email_content, $template, $template_content);
+         	
+          Helper::sendMail($email_content, $template, $template_content);
         } 
 
 
