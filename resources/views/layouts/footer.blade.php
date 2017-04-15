@@ -67,13 +67,17 @@
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inveRSe"></i> </span> </div>
                 <div class="media-body">
-                  <p>+91 - 8370005001 <br>
+                  <p>+91 - 7067777832 <br>
                     </p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inveRSe"></i> </span> </div>
                 <div class="media-body"> <span><a href="##">info@shopersquare.com</a></span> </div>
+              </li>
+               <li class="media">
+                <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inveRSe"></i> </span> </div>
+                <div class="media-body"> <span><a href="http://www.shopersquare.com">www.shopersquare.com</a></span> </div>
               </li>
             </ul>
           </div>
@@ -89,7 +93,7 @@
           
           <div class="module-body">
             <ul class='list-unstyled'>
-              <li class="fiRSt"><a href="##" title="Contact us">My Account</a></li>
+              <li class="fiRSt"><a href="myaccount" title="Contact us">My Account</a></li>
               <li><a href="##" title="About us">Order History</a></li>
               <li><a href="{{url('faq')}}" title="faq">FAQ</a></li> 
               <li class="last"><a href="##" title="Where is my order?">Help Center</a></li>

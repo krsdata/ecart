@@ -18,11 +18,17 @@
             <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/02.jpg')}});">
               <div class="container-fluid">
                 <div class="caption bg-color vertical-center text-left">
-                  <div class="slider-header fadeInDown-1">Harbal</div>
-                  <div class="big-text fadeInDown-1">Muscels Growth </div>
-                  <p class="slide-para">Muscles Growth Powder is a 100% Ayurvedic Body Growth System. Body Growth offers Amazing Results! After using Body Growth Height Ensures Powder you will see new confidence in yourself.</p>
-                  <div class="excerpt fadeInDown-2 hidden-xs"> <span> </span> </div>
-                  <div class="button-holder fadeInDown-3"> <a href="index.php-page=single-product.htm" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
+                 
+                </div>
+                <!-- /.caption --> 
+              </div>
+              <!-- /.container-fluid --> 
+            </div>
+
+              <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/03.jpg')}});">
+              <div class="container-fluid">
+                <div class="caption bg-color vertical-center text-left">
+                 
                 </div>
                 <!-- /.caption --> 
               </div>
