@@ -14,7 +14,20 @@
               <!-- /.container-fluid --> 
             </div>
             <!-- /.item -->
-            
+          @if($banner->count()>0)
+           @foreach($banner as $key => $value) 
+            <div class="item" style="background-image: url({!! asset('storage/files/banner/'.$value->field_value) !!});">
+              <div class="container-fluid">
+                <div class="caption bg-color vertical-center text-left">
+                 
+                </div>
+                <!-- /.caption --> 
+              </div>
+              <!-- /.container-fluid --> 
+            </div>
+             @endforeach  
+
+             @else
             <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/02.jpg')}});">
               <div class="container-fluid">
                 <div class="caption bg-color vertical-center text-left">
@@ -35,6 +48,9 @@
               <!-- /.container-fluid --> 
             </div>
             <!-- /.item --> 
+            @endif
+
+
             
           </div>
           <!-- /.owl-carousel --> 

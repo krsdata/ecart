@@ -61,23 +61,31 @@
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inveRSe"></i> </span> </div>
                 <div class="media-body">
-                  <p> Plot No. 21/5, 1st Floor, office No. 101 & 102, Vijay Nagar, near Life Care Hospital, Indore – 452001</p>
+                  <p>  
+                  {!! isset($company_address->field_value)?$company_address->field_value:"Indore MP 452001" !!}
+                  </p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inveRSe"></i> </span> </div>
                 <div class="media-body">
-                  <p>+91 - 7067777832 <br>
-                    </p>
+                  <p> 
+                  {{ isset($contact_number->field_value)?$contact_number->field_value:"+91-7067777832" }} 
+
+                    </p> 
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inveRSe"></i> </span> </div>
-                <div class="media-body"> <span><a href="##">info@shopersquare.com</a></span> </div>
+                <div class="media-body"> <span><a href="#"> {{ isset($website_email->field_value)?$website_email->field_value:"info@shopersquare.com" }}</a></span> </div>
               </li>
                <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inveRSe"></i> </span> </div>
-                <div class="media-body"> <span><a href="http://www.shopersquare.com">www.shopersquare.com</a></span> </div>
+                <div class="media-body"> <span><a href="http://www.shopersquare.com">
+                  {{ isset($website_url->field_value)?$website_url->field_value:"www.shopersquare.com" }}
+                
+
+                </a></span> </div>
               </li>
             </ul>
           </div>

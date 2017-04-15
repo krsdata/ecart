@@ -1,5 +1,3 @@
-
-
 @extends('packages::layouts.master') 
     @section('content') 
       @include('packages::partials.main-header')
@@ -17,8 +15,8 @@
                           <div class="panel-body ">
                               <div class="row">  
 
-                                {!! Form::model($product, ['method' => 'PATCH', 'route' => ['product.update', $product->id],'class'=>'form-horizontal','id'=>'users_form','files' => true]) !!}
-                                    @include('packages::product.form', compact('product'))
+                                {!! Form::model($setting, ['method' => 'PATCH', 'route' => ['setting.update', $setting->id],'class'=>'form-horizontal','id'=>'users_form','files' => true]) !!}
+                                    @include('packages::setting.form', compact('setting'))
                                 {!! Form::close() !!}
                               </div>
                           </div>
@@ -29,8 +27,3 @@
           </section><!-- /.content -->
       </div> 
 @stop
-
-
-
-
-

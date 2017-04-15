@@ -118,6 +118,23 @@
                 ]
         ); 
 
+         Route::bind('setting', function($value, $route) {
+            return Modules\Admin\Models\Settings::find($value);
+        });
+ 
+        Route::resource('admin/setting', 'Modules\Admin\Http\Controllers\SettingsController', [
+            'names' => [
+                'edit'      => 'setting.edit',
+                'show'      => 'setting.show',
+                'destroy'   => 'setting.destroy',
+                'update'    => 'setting.update',
+                'store'     => 'setting.store',
+                'index'     => 'setting',
+                'create'    => 'setting.create',
+            ]
+                ]
+        ); 
+
 
  
         Route::match(['get','post'],'admin/profile', 'Modules\Admin\Http\Controllers\AdminController@profile'); 

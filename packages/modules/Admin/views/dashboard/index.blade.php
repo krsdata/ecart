@@ -64,6 +64,62 @@
                   <a href="{{route('product')}}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
                 </div>
               </div><!-- ./col -->
+
+                <div class="col-lg-3 col-xs-3">
+                <!-- small box -->
+                <div class="small-box bg-blue">
+                  <div class="inner">
+                    <h3>{{ $category }}</h3> 
+                    <p>Total category</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="{{route('category')}}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div><!-- ./col -->
+
+               <div class="col-lg-3 col-xs-3">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                  <div class="inner">
+                    <h3>{{ $order }}</h3> 
+                    <p>Total Order</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="{{route('transaction')}}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div><!-- ./col --> 
+               <div class="col-lg-3 col-xs-3">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h3>{{ $today_order }}</h3> 
+                    <p>Total  Order Today </p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="{{route('transaction')}}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div><!-- ./col --> 
+
+               <div class="col-lg-3 col-xs-3">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h3>Site Settings</h3> 
+                    <p>Update Site information </p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="{{route('setting')}}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div><!-- ./col --> 
+
               
             
  

@@ -8,7 +8,9 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<title>ShoperSquare: India largest ecommerce company</title>
+<title> 
+    {{ isset($website_title->field_value)?$website_title->field_value:"ShoperSquare: India largest ecommerce company" }} 
+</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{{ asset('public/enduser/assets/css/bootstrap.min.css') }}">

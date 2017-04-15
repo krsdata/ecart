@@ -24,6 +24,8 @@ use App\Http\Requests;
 use App\Helpers\Helper as Helper;
 use Modules\Admin\Models\User;
 use Modules\Admin\Models\Product; 
+use Modules\Admin\Models\Category; 
+use Modules\Admin\Models\Transaction; 
 use App\Admin;
 use Illuminate\Http\Request;
 use Session;
@@ -54,8 +56,15 @@ class AdminController extends Controller {
         $page_action    = "Veiw";
         $user           = User::count();
         $product        = Product::count();
+        $category       = Category::where('parent_id',0)->count();
+        $order          =  Transaction::all()->count();  
+
+        $today_order    =  Transaction::whereDate('created_at', '=', date('Y-m-d'))->get()->count(); 
+
+        
+
         $viewPage       = "Admin";
-        return view('packages::dashboard.index',compact('product','user','page_title','page_action','viewPage'));
+        return view('packages::dashboard.index',compact('today_order','order','category','product','user','page_title','page_action','viewPage'));
     }
 
    public function profile(Request $request,Admin $users)

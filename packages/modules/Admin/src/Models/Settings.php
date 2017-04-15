@@ -1,13 +1,12 @@
 <?php
-
 namespace Modules\Admin\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;  
-
+use Illuminate\Database\Eloquent\Model as Eloquent; 
+use Modules\Admin\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Response;
 
-class  Setting extends Eloquent {
+class Settings extends Eloquent {
 
    
     /**

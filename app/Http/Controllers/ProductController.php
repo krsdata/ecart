@@ -31,6 +31,7 @@ use App\Helpers\Helper;
 use Response;
 use Cart; 
 use PDF;
+use Modules\Admin\Models\Settings;
 
 /**
  * Class AdminController
@@ -49,7 +50,7 @@ class ProductController extends Controller {
 
     private $user_id;
 
-    public function __construct(Request $request) {
+    public function __construct(Request $request, Settings $setting) {
 
         View::share('category_name', $request->segment(1));
         View::share('total_item',Cart::content()->count());
@@ -76,6 +77,24 @@ class ProductController extends Controller {
         $special_deals  = Product::orderBy('discount','desc')->limit(3)->get(); 
         View::share('hot_products',$hot_products);
         View::share('special_deals',$special_deals);  
+
+        $website_title      = $setting::where('field_key','website_title')->first();
+        $website_email      = $setting::where('field_key','website_email')->first();
+        $website_url        = $setting::where('field_key','website_url')->first();
+        $contact_number     = $setting::where('field_key','contact_number')->first();
+        $company_address    = $setting::where('field_key','company_address')->first();
+
+        $banner             = $setting::where('field_key','LIKE','%banner_image%')->get();
+
+     
+         View::share('website_title',$website_title);
+         View::share('website_email',$website_email);
+         View::share('website_url',$website_url);
+         View::share('contact_number',$contact_number);
+         View::share('company_address',$company_address);
+         View::share('banner',$banner); 
+
+
       //  dd(Route::currentRouteName());
  
     }

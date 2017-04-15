@@ -1,5 +1,4 @@
 
-
 @extends('packages::layouts.master') 
     @section('content') 
       @include('packages::partials.main-header')
@@ -16,10 +15,9 @@
                        <div class="panel panel-cascade">
                           <div class="panel-body ">
                               <div class="row">  
-
-                                {!! Form::model($product, ['method' => 'PATCH', 'route' => ['product.update', $product->id],'class'=>'form-horizontal','id'=>'users_form','files' => true]) !!}
-                                    @include('packages::product.form', compact('product'))
-                                {!! Form::close() !!}
+                                      {!! Form::model($setting, ['route' => ['setting.store'],'class'=>'form-horizontal','id'=>'users_form','files' => true]) !!}
+                                        @include('packages::setting.form')
+                                      {!! Form::close() !!}
                               </div>
                           </div>
                     </div>
@@ -29,8 +27,3 @@
           </section><!-- /.content -->
       </div> 
 @stop
-
-
-
-
-
