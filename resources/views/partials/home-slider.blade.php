@@ -1,20 +1,9 @@
    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
         <div id="hero">
           <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
-            <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/01.jpg') }});">
-              <div class="container-fluid">
-                <!--<div class="caption bg-color vertical-center text-left">
-                  <div class="slider-header fadeInDown-1">Top Brands</div>
-                  <div class="big-text fadeInDown-1"> New Collections </div>
-                  <div class="excerpt fadeInDown-2 hidden-xs"> <span></span> </div>
-                  <div class="button-holder fadeInDown-3"> <a href="index.php-page=single-product.htm" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
-                </div>-->
-                <!-- /.caption --> 
-              </div>
-              <!-- /.container-fluid --> 
-            </div>
+           
             <!-- /.item -->
-          @if($banner->count()>0)
+          @if($banner->count())
            @foreach($banner as $key => $value) 
             <div class="item" style="background-image: url({!! asset('storage/files/banner/'.$value->field_value) !!});">
               <div class="container-fluid">
@@ -27,7 +16,7 @@
             </div>
              @endforeach  
 
-             @else
+             @else 
             <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/02.jpg')}});">
               <div class="container-fluid">
                 <div class="caption bg-color vertical-center text-left">
@@ -38,6 +27,13 @@
               <!-- /.container-fluid --> 
             </div>
 
+             <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/01.jpg') }});">
+              <div class="container-fluid">
+              
+              </div>
+              <!-- /.container-fluid --> 
+            </div>
+            
               <div class="item" style="background-image: url({{ asset('public/enduser/assets/images/sliders/03.jpg')}});">
               <div class="container-fluid">
                 <div class="caption bg-color vertical-center text-left">

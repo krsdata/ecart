@@ -86,7 +86,7 @@ class ProductController extends Controller {
 
         $banner             = $setting::where('field_key','LIKE','%banner_image%')->get();
 
-     
+
          View::share('website_title',$website_title);
          View::share('website_email',$website_email);
          View::share('website_url',$website_url);
@@ -94,7 +94,7 @@ class ProductController extends Controller {
          View::share('company_address',$company_address);
          View::share('banner',$banner); 
 
-
+          
       //  dd(Route::currentRouteName());
  
     }
