@@ -14,7 +14,7 @@
                                 
                                 <div style="width: 319px;" class="owl-item">
                                     <div class="single-product-gallery-item" id="slide1">
-                                             <img style="width: 100%" src="{{ asset('storage/uploads/products/'. $product->photo) }}" data-zoom-image="{{ asset('storage/uploads/products/'. $product->photo) }}"  >
+                                             <img id="zoom_01" style="width: 100%" src="{{ asset('storage/uploads/products/'. $product->photo) }}" data-zoom-image="{{ asset('storage/uploads/products/'. $product->photo) }}"  >
                                     </div>
                                 </div>
 
