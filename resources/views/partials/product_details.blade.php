@@ -1,3 +1,4 @@
+
 <div class="col-md-9">
     <div class="detail-block">
 
@@ -13,7 +14,7 @@
                                 
                                 <div style="width: 319px;" class="owl-item">
                                     <div class="single-product-gallery-item" id="slide1">
-                                             <img style="width: 100%" src="{{ asset('storage/uploads/products/'. $product->photo) }}" alt="">
+                                             <img style="width: 100%" src="{{ asset('storage/uploads/products/'. $product->photo) }}" data-zoom-image="{{ asset('storage/uploads/products/'. $product->photo) }}"  >
                                     </div>
                                 </div>
 
@@ -144,7 +145,7 @@
     </div><!-- /.product-tabs -->
   
 </div>
-
+<script type="text/javascript" src="http://www.elevateweb.co.uk/wp-content/themes/radial/jquery.elevatezoom.min.js"></script>
 <script type="text/javascript">
 	
 	function updateCart(value) {
