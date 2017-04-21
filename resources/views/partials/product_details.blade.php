@@ -145,7 +145,6 @@
     </div><!-- /.product-tabs -->
   
 </div>
-<script type="text/javascript" src="http://www.elevateweb.co.uk/wp-content/themes/radial/jquery.elevatezoom.min.js"></script>
 <script type="text/javascript">
 	
 	function updateCart(value) {
