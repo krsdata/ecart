@@ -191,6 +191,14 @@
     <!-- JavaScripts placed at the end of the document so the pages load faster --> 
     <script src="{{ asset('public/enduser/assets/js/jquery-1.11.1.min.js') }}"></script> 
     <script type="text/javascript" src="http://www.elevateweb.co.uk/wp-content/themes/radial/jquery.elevatezoom.min.js"></script>
+    <script> 
+      $("#zoom_01").elevateZoom({
+        zoomType        : "inner",
+        cursor: "crosshair"
+      });
+       
+      </script>
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
     <script type="text/javascript">
       
