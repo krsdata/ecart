@@ -34,7 +34,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-     
 
       public function __construct(Request $request) { 
         
@@ -48,8 +47,6 @@ class HomeController extends Controller
         View::share('hot_products',$hot_products);
         View::share('special_deals',$special_deals);  
  
- 
-      // dd(Route::currentRouteName());
 
     }
 
@@ -203,8 +200,16 @@ class HomeController extends Controller
         return view('end-user.faq',compact('categories','products','category')); 
         return view('end-user.faq');   
     }
+      /*----------*/
+    public function aboutus()
+    {
+         $products = Product::with('category')->orderBy('id','asc')->get();
+        $categories = Category::nested()->get(); 
+        return view('end-user.about',compact('categories','products','category')); 
+        return view('end-user.about');   
+    }
      /*----------*/
-     public function trackOrder()
+    public function trackOrder()
     {
          $products = Product::with('category')->orderBy('id','asc')->get();
         $categories = Category::nested()->get(); 
@@ -212,7 +217,7 @@ class HomeController extends Controller
         return view('end-user.track-orders');   
     }
      /*----------*/
-     public function tNc()
+    public function tNc()
     {
          $products = Product::with('category')->orderBy('id','asc')->get();
         $categories = Category::nested()->get(); 

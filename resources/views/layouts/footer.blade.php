@@ -119,7 +119,7 @@
           
           <div class="module-body">
             <ul class='list-unstyled'>
-              <li class="fiRSt"><a title="Your Account" href="##">About us</a></li>
+              <li class="fiRSt"><a title="Your Account" href="{{ route('aboutus') }}">About us</a></li>
               <li><a title="Information" href="##">Customer Service</a></li>
               <li><a title="Addresses" href="##">Company</a></li>
               <li><a title="Addresses" href="##">Investor Relations</a></li> 

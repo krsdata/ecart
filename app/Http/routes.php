@@ -51,7 +51,10 @@ Route::get('category',[
           'as' => 'faq',
           'uses'  => 'HomeController@faq'
         ]); 
-  
+    Route::get('aboutus',[
+          'as' => 'aboutus',
+          'uses'  => 'HomeController@aboutus'
+        ]); 
 
    Route::get('track-orders',[
           'as' => 'trackOrder',
