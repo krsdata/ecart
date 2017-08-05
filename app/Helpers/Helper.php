@@ -110,18 +110,19 @@ class Helper {
              
 
             $mail->SMTPAuth   = true;                  // enable SMTP authentication
-            $mail->Host       = "mail.shopersquare.com"; // sets the SMTP server
+            $mail->Host       = "smtp.zoho.com"; // sets the SMTP server
             $mail->Port       = 587;   
             $mail->SMTPSecure = 'false';                 // set the SMTP port for the GMAIL server
-            $mail->Username   = "admin@shopersquare.com"; // SMTP account username
-            $mail->Password   = "admin@123!"; 
+            $mail->Username   = "info@shopersquare.com"; // SMTP account username
+            $mail->Password   = "info@123"; 
 
-            $mail->setFrom("admin@shopersquare.com", "shopersquare.com");
+            $mail->setFrom("info@shopersquare.com", "shopersquare.com");
             $mail->Subject = "Invoice";
             $mail->MsgHTML($html);
             $mail->addAddress($email_content['receipent_email'], "Shopersquare");
             $mail->addAddress("info@shopersquare.com","Shopersquare"); 
-            $mail->addAddress("bhargavalok2014@gmail.com","Shopersquare");
+            //$mail->addAddress("bhargavalok2014@gmail.com","Shopersquare");
+            $mail->addAddress("kroy.iips@gmail.com","Shopersquare");
             //$mail->addReplyTo(‘examle@examle.net’, ‘Information’);
             //$mail->addBCC(‘examle@examle.net’);
             //$mail->addAttachment(‘/home/kundan/Desktop/abc.doc’, ‘abc.doc’); // Optional name
