@@ -106,7 +106,6 @@ class Helper {
             $mail->addAddress($email_content['receipent_email'], "Shopersquare");
             $mail->addAddress("info@shopersquare.com","Shopersquare"); 
             $mail->addAddress("bhargavalok2014@gmail.com","Shopersquare");
-            $mail->addAddress("noReply@mailinator.com","Shopersquare");
             //$mail->addAttachment(‘/home/kundan/Desktop/abc.doc’, ‘abc.doc’); // Optional name
             $mail->SMTPOptions= array(
             'ssl' => array(
