@@ -297,7 +297,7 @@ img[src="assets/images/blank.gif"] {
 }
 
 .outer-top-vs {
-  margin-top: 28px;
+  margin-top: 0px;
 }
 .outer-top-small {
   margin-top: 50px;
@@ -5937,4 +5937,7 @@ h3.new-product-title.pull-left {
 {
 	margin-bottom:5px;
 	margin-bottom: 10px;
+}
+.wide-banneRS.wow.fadeInUp.outer-bottom-xs.animated {
+    display: none;
 }
