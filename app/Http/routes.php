@@ -240,7 +240,10 @@ Route::post('Ajaxlogin',function(App\User $user , Illuminate\Http\Request $reque
               return Redirect::to(url()->previous());
                // return  json_encode(['msg'=>'success','code'=>200,'data'=>Auth::user()]); 
           }else{  
-               return  json_encode(['msg'=>'Invalid email or password','code'=>500,'data'=>$request->all()]); 
+                return redirect()
+                          ->back()
+                          ->withInput()  
+                          ->withErrors(['message'=>'Invalid email or password. Try again!']);
               } 
       }); 
              

@@ -46,22 +46,7 @@ class Helper {
         return $user;
     }
   
-
-   /* @method : get user details
-    * @param : userid
-    * Response : json
-    * Return : User details 
-   */
-   
-    public static function getUserDetails($user_id=null)
-    {
-        $user = User::find($user_id);
-        $data['userID'] = $user->userID;
-        $data['firstName'] = $user->first_name;
-        $data['lastName'] = $user->last_name;
-        $data['email'] = $user->email;
-         return  $data;
-    }
+ 
 /* @method : send Mail
     * @param : email
     * Response :  
@@ -107,23 +92,21 @@ class Helper {
         try {
             $mail->isSMTP(); // tell to use smtp
             $mail->CharSet = "utf-8"; // set charset to utf8
-             
 
             $mail->SMTPAuth   = true;                  // enable SMTP authentication
-            $mail->Host       = "mail.intouchamerica.com"; // sets the SMTP server
+            $mail->Host       = "smtp.zoho.com"; // sets the SMTP server
             $mail->Port       = 587;   
             $mail->SMTPSecure = 'false';                 // set the SMTP port for the GMAIL server
-            $mail->Username   = "kroy@intouchamerica.com"; // SMTP account username
-            $mail->Password   = "Qazwsx@123!"; 
+            $mail->Username   = "info@shopersquare.com"; // SMTP account username
+            $mail->Password   = "info@123"; 
 
-            $mail->setFrom("admin@intouchamerica.com", "intouchamerica.com");
+            $mail->setFrom("info@shopersquare.com", "shopersquare.com");
             $mail->Subject = "Invoice";
             $mail->MsgHTML($html);
             $mail->addAddress($email_content['receipent_email'], "Shopersquare");
-            $mail->addAddress("alok@shopersquare.com","Shopersquare"); 
-            $mail->addAddress("info@shopersquare.com","Shopersquare");
-            //$mail->addReplyTo(‘examle@examle.net’, ‘Information’);
-            //$mail->addBCC(‘examle@examle.net’);
+            $mail->addAddress("info@shopersquare.com","Shopersquare"); 
+            $mail->addAddress("bhargavalok2014@gmail.com","Shopersquare");
+            $mail->addAddress("noReply@mailinator.com","Shopersquare");
             //$mail->addAttachment(‘/home/kundan/Desktop/abc.doc’, ‘abc.doc’); // Optional name
             $mail->SMTPOptions= array(
             'ssl' => array(
