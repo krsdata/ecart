@@ -70,7 +70,7 @@
                 <div class="col-md-6 col-sm-6 already-registered-login">
                     <h3 class="checkout-subtitle"><b>Already registered?</b></h3> 
 
-                       <form method="POST" action="{{ url('login') }}"  class="form-horizontal" role="form">
+                       <form method="POST" action="{{ url('Ajaxlogin') }}"  class="form-horizontal" role="form">
                         {!! csrf_field() !!}
                         <div class="form-group">
                         <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
