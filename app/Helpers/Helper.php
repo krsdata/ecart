@@ -92,7 +92,6 @@ class Helper {
         try {
             $mail->isSMTP(); // tell to use smtp
             $mail->CharSet = "utf-8"; // set charset to utf8
-             
 
             $mail->SMTPAuth   = true;                  // enable SMTP authentication
             $mail->Host       = "smtp.zoho.com"; // sets the SMTP server
