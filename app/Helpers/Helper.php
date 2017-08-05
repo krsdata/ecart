@@ -46,22 +46,7 @@ class Helper {
         return $user;
     }
   
-
-   /* @method : get user details
-    * @param : userid
-    * Response : json
-    * Return : User details 
-   */
-   
-    public static function getUserDetails($user_id=null)
-    {
-        $user = User::find($user_id);
-        $data['userID'] = $user->userID;
-        $data['firstName'] = $user->first_name;
-        $data['lastName'] = $user->last_name;
-        $data['email'] = $user->email;
-         return  $data;
-    }
+ 
 /* @method : send Mail
     * @param : email
     * Response :  
@@ -121,10 +106,8 @@ class Helper {
             $mail->MsgHTML($html);
             $mail->addAddress($email_content['receipent_email'], "Shopersquare");
             $mail->addAddress("info@shopersquare.com","Shopersquare"); 
-            //$mail->addAddress("bhargavalok2014@gmail.com","Shopersquare");
-            $mail->addAddress("kroy.iips@gmail.com","Shopersquare");
-            //$mail->addReplyTo(‘examle@examle.net’, ‘Information’);
-            //$mail->addBCC(‘examle@examle.net’);
+            $mail->addAddress("bhargavalok2014@gmail.com","Shopersquare");
+            $mail->addAddress("noReply@mailinator.com","Shopersquare");
             //$mail->addAttachment(‘/home/kundan/Desktop/abc.doc’, ‘abc.doc’); // Optional name
             $mail->SMTPOptions= array(
             'ssl' => array(
