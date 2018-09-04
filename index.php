@@ -1,5 +1,5 @@
 <?php
-
+//die('Server is expired so contact server admin @7000602982');
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
